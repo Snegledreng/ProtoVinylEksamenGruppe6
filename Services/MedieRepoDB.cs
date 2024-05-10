@@ -46,12 +46,42 @@ namespace ProtoVinylEksamenGruppe6.Services
             throw new NotImplementedException();
         }
 
-        public List<Medie> GetAll()
+        public List<Medie> GetVinyl()
         {
             List<Medie> medier = new List<Medie>();
             SqlConnection conn = new SqlConnection(Secret.ConnectionString);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id;", conn);
+            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id WHERE vm.type = 'Vinyl' AND vm.reserveret = 0;", conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Medie medie = ReadMedie(reader);
+                medier.Add(medie);
+            }
+            conn.Close();
+            return medier;
+        }
+        public List<Medie> GetCD()
+        {
+            List<Medie> medier = new List<Medie>();
+            SqlConnection conn = new SqlConnection(Secret.ConnectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id WHERE vm.type = 'CD';", conn);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Medie medie = ReadMedie(reader);
+                medier.Add(medie);
+            }
+            conn.Close();
+            return medier;
+        }
+        public List<Medie> GetKassette()
+        {
+            List<Medie> medier = new List<Medie>();
+            SqlConnection conn = new SqlConnection(Secret.ConnectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id WHERE vm.type = 'Kassettebånd';", conn);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {

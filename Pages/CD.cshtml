@@ -1,9 +1,7 @@
 ﻿@page
-@model IndexModel
+@model ProtoVinylEksamenGruppe6.Pages.CDModel
 @{
-    ViewData["Title"] = "Home page";
 }
-
 <table class="table table-hover">
     <thead>
         <tr>
@@ -14,7 +12,6 @@
             <th>Stand</th>
             <th>Pris</th>
             <th>Type</th>
-            <th>Vinyltype</th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +25,6 @@
                 <td>@m.Stand</td>
                 <td>@m.Pris</td>
                 <td>@m.Type</td>
-                <td>@m.VinylType</td>
             </tr>
         }
 

@@ -5,11 +5,11 @@ using ProtoVinylEksamenGruppe6.Services;
 
 namespace ProtoVinylEksamenGruppe6.Pages
 {
-    public class IndexModel : PageModel
+    public class CDModel : PageModel
     {
         private readonly IMedieRepoDB _repo;
 
-        public IndexModel(IMedieRepoDB repo)
+        public CDModel(IMedieRepoDB repo)
         {
             _repo = repo;
         }
@@ -18,7 +18,7 @@ namespace ProtoVinylEksamenGruppe6.Pages
 
         public void OnGet()
         {
-            Medier = _repo.GetVinyl();
+            Medier = _repo.GetCD();
         }
     }
 }
