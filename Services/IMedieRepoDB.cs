@@ -9,9 +9,7 @@ namespace ProtoVinylEksamenGruppe6.Services
         Medie Update(int id, Medie updatedMedie);
         Medie DeleteById(int id);
         Medie GetById(int id);
-        public List<Medie> GetVinyl();
-        public List<Medie> GetCD();
-        public List<Medie> GetKassette();
+        public List<Medie> GetAll(string typestring);
 
     }
 }

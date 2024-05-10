@@ -1,0 +1,39 @@
+﻿@page
+@model ProtoVinylEksamenGruppe6.Pages.Admin.AdminlagerModel
+@{
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Kunstner</th>
+            <th>Titel</th>
+            <th>År</th>
+            <th>Genre</th>
+            <th>Stand</th>
+            <th>Pris</th>
+            <th>Type</th>
+            <th>Vinyltype</th>
+            <th>Reservationsstatus</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model.Medier)
+        {
+            <tr>
+                <td>@m.Kunstner</td>
+                <td>@m.Titel</td>
+                <td>@m.År</td>
+                <td>@m.Genre</td>
+                <td>@m.Stand</td>
+                <td>@m.Pris</td>
+                <td>@m.Type</td>
+                <td>@m.VinylType</td>
+                @if (m.Reserveret) {
+                    <td>Reserveret</td>
+                }
+
+            </tr>
+        }
+
+    </tbody>
+</table>
