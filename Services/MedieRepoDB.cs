@@ -5,12 +5,6 @@ namespace ProtoVinylEksamenGruppe6.Services
 {
     public class MedieRepoDB : IMedieRepoDB
     {
-        private List<Medie> _medieListe;
-
-        public MedieRepoDB()
-        {
-            MedieRepoDB _medieliste = new MedieRepoDB();
-        }
 
         public Medie Add(Medie newMedie)
         {
@@ -31,15 +25,18 @@ namespace ProtoVinylEksamenGruppe6.Services
         {
             {
                 Medie medie = new Medie();
-                medie.Titel = reader.GetString(0);
-                medie.Kunstner = reader.GetString(1);
-                medie.År = reader.GetInt32(2);
-                medie.Genre = reader.GetString(3);
-                medie.Stand = reader.GetString(4);
-                medie.Pris = reader.GetString(5);
-                medie.Type = reader.GetString(6);
-                medie.VinylType = reader.GetString(7);
-                medie.Reserveret = reader.GetBoolean(8);
+                medie.Titel = reader.GetString(1);
+                medie.Kunstner = reader.GetString(2);
+                medie.År = reader.GetInt32(3);
+                medie.Genre = reader.GetString(4);
+                medie.Stand = reader.GetString(5);
+                medie.Pris = reader.GetString(6);
+                medie.Type = reader.GetString(7);
+                if (!reader.IsDBNull(8))
+                {
+                    medie.VinylType = reader.GetString(8);
+                }
+                medie.Reserveret = reader.GetBoolean(9);
                 return medie;
             }
         }
@@ -54,7 +51,7 @@ namespace ProtoVinylEksamenGruppe6.Services
             List<Medie> medier = new List<Medie>();
             SqlConnection conn = new SqlConnection(Secret.ConnectionString);
             conn.Open();
-            SqlCommand command = new SqlCommand("Select * from Vinyl_Medie", conn);
+            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id;", conn);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {

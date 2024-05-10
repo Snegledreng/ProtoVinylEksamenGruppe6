@@ -4,7 +4,33 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Kunstner</th>
+            <th>Udgivelsesår</th>
+            <th>Genre</th>
+            <th>Stand</th>
+            <th>Pris</th>
+            <th>Type</th>
+            <th>Vinyltype</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model.Medier)
+        {
+            <tr>
+                <td>@m.Titel</td>
+                <td>@m.Kunstner</td>
+                <td>@m.År</td>
+                <td>@m.Genre</td>
+                <td>@m.Stand</td>
+                <td>@m.Pris</td>
+                <td>@m.Type</td>
+                <td>@m.VinylType</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
