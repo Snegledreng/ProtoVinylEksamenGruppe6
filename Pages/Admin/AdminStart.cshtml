@@ -1,0 +1,44 @@
+﻿@page
+@model AdminStartModel
+@{
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Kunstner</th>
+            <th>Titel</th>
+            <th>År</th>
+            <th>Genre</th>
+            <th>Stand</th>
+            <th>Pris</th>
+            <th>Type</th>
+            <th>Vinyltype</th>
+            <th>Reservationsstatus</th>
+            <th>Kundenavn</th>
+            <th>Kundetelefon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model.Reservationer)
+        {
+            <tr>
+                <td>@r.Medie.Kunstner</td>
+                <td>@r.Medie.Titel</td>
+                <td>@r.Medie.År</td>
+                <td>@r.Medie.Genre</td>
+                <td>@r.Medie.Stand</td>
+                <td>@r.Medie.Pris</td>
+                <td>@r.Medie.Type</td>
+                <td>@r.Medie.VinylType</td>
+                @if (r.Medie.Reserveret)
+                {
+                    <td>Reserveret</td>
+                }
+                <td>@r.KundeNavn</td>
+                <td>@r.KundeTelefon</td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
