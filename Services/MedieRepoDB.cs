@@ -30,7 +30,7 @@ namespace ProtoVinylEksamenGruppe6.Services
                 medie.År = reader.GetInt32(3);
                 medie.Genre = reader.GetString(4);
                 medie.Stand = reader.GetString(5);
-                medie.Pris = reader.GetString(6);
+                medie.Pris = reader.GetInt32(6);
                 medie.Type = reader.GetString(7);
                 if (!reader.IsDBNull(8))
                 {
