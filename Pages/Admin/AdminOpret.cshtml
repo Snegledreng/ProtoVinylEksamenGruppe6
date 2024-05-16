@@ -1,0 +1,74 @@
+﻿@page
+@model ProtoVinylEksamenGruppe6.Pages.Admin.AdminOpretModel
+@{
+}
+<h1>Opret en ny plade</h1>
+
+
+<form method="post">
+    <div class="form-group>">
+        <label>Titel</label><br />
+        <input class="form-control" asp-for="@Model.Titel" /><br />
+
+        <label>Kunstner</label><br />
+        <input class="form-control" asp-for="@Model.Kunstner" /><br />
+
+        <label>År</label><br />
+        <input class="form-control" asp-for="@Model.År" /><br />
+
+        <label>Genre</label><br />
+        <select class="form-control" asp-for="@Model.NyGenre">
+            <option value="Pop">Pop</option>
+            <option value="Hip hop">Hip hop</option>
+            <option value="Rock">Rock</option>
+            <option value="RnB">RnB</option>
+            <option value="Soul">Soul</option>
+            <option value="Reggae">Reggae</option>
+            <option value="Country">Country</option>
+            <option value="Funk">Funk</option>
+            <option value="Folk">Folk</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Disco">Disco</option>
+            <option value="Klassisk">Klassisk</option>
+            <option value="Elektronisk">Elektronisk</option>
+            <option value="Blues">Blues</option>
+            <option value="Børnemusik">Børnemusik</option>
+            <option value="New-age">New-age</option>
+            <option value="Ska">Ska</option>
+            <option value="Traditionelt">Traditionelt</option>
+            <option value="Indie">Indie</option>
+        </select><br />
+
+        <label>Stand</label><br />
+        <select class="form-control" asp-for="@Model.NyStand">
+            <option value="Mint">Mint</option>
+            <option value="NM">Near Mint</option>
+            <option value="VG+">Very Good+</option>
+            <option value="VG">Very Good</option>
+            <option value="Bad">Bad</option>
+            <option value="Ny">Ny</option>
+
+        </select><br />
+
+        <label>Pris</label><br />
+        <input class="form-control" asp-for="@Model.Pris" /><br />
+
+        <label>Type</label><br />
+        <select class="form-control" asp-for="@Model.Type">
+            <option value="Vinyl">Vinyl</option>
+            <option value="CD">CD</option>
+            <option value="Kassettebånd">Kassettebånd</option>
+        </select><br />
+
+        <label>VinylType</label><br />
+        <select class="form-control" asp-for="@Model.VinylType">
+            <option value="">Vælg vinyltype</option>
+            <option value="LP">LP</option>
+            <option value="EP">EP</option>
+            <option value="Single">Single</option>
+        </select><br />
+
+        <input type="submit" value="Opret" class="btn btn-success" />
+        <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
+    </div>
+</form>

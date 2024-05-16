@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.ComponentModel;
+using Microsoft.Data.SqlClient;
 using ProtoVinylEksamenGruppe6.Model;
 using System.Diagnostics.Metrics;
 
@@ -7,9 +8,29 @@ namespace ProtoVinylEksamenGruppe6.Services
     public class MedieRepoDB : IMedieRepoDB
     {
 
-        public Medie Add(Medie newMedie)
+        public Medie CreateMedie(Medie newMedie)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection(Secret.ConnectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand("INSERT INTO Vinyl_Medie values (@titel,@kunstner,@år,@genre,@stand,@pris,@type,@vinyltype,@reserveret)", conn);
+            command.Parameters.AddWithValue("@titel", newMedie.Titel);
+            command.Parameters.AddWithValue("@kunstner", newMedie.Kunstner);
+            command.Parameters.AddWithValue("@år", newMedie.År);
+            command.Parameters.AddWithValue("@genre", newMedie.Genre);
+            command.Parameters.AddWithValue("@stand", newMedie.Stand);
+            command.Parameters.AddWithValue("@pris", newMedie.Pris);
+            command.Parameters.AddWithValue("@type", newMedie.Type);
+            command.Parameters.AddWithValue("@vinyltype", newMedie.VinylType);
+            command.Parameters.AddWithValue("@reserveret", 0);
+
+
+            int r = command.ExecuteNonQuery();
+            if (r == 0)
+            {
+                throw new ArgumentException("Nul rækker ændret. " + newMedie + " er ikke oprettet.");
+            }
+            conn.Close();
+            return newMedie;
         }
 
         public Medie Update(int id, Medie updatedMedie)
@@ -63,7 +84,7 @@ namespace ProtoVinylEksamenGruppe6.Services
             return medier;
         }
 
-        //Sorteringsfunktioner
+        //Sorteringsfunktioner;)
         public List<Medie> SorterEfterTitel(List<Medie> medier)
         {
                 return medier.OrderBy(t => t.Titel).ToList();
