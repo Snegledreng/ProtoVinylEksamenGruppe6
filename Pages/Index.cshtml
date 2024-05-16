@@ -8,7 +8,11 @@
     <thead>
         <tr>
             <th>Kunstner</th>
-            <th>Titel</th>
+            <th>
+                <form method="post" asp-page-handler="SorterTitel">
+            <button type="submit" class="btn btn-primary">Titel</button>
+                </form>
+            </th>
             <th>År</th>
             <th>Genre</th>
             <th>Stand</th>
