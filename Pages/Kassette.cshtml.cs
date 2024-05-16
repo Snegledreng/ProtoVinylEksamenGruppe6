@@ -18,17 +18,17 @@ namespace ProtoVinylEksamenGruppe6.Pages
 
         public void OnGet()
         {
-            Medier = _repo.GetAll("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id WHERE vm.type = 'Kassettebånd' AND vm.reserveret = 0;");
+            Medier = _repo.GetAll();
         }
 
         public IActionResult OnPostSorterTitel()
         {
-            Medier = _repo.GetAll("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id WHERE vm.type = 'Kassettebånd' AND vm.reserveret = 0 order by vm.titel ASC;");
+            Medier = _repo.GetAll();
             return Page();
         }
         public IActionResult OnPostSorterKunstner()
         {
-            Medier = _repo.GetAll("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id WHERE vm.type = 'Kassettebånd' AND vm.reserveret = 0 order by vm.kunstner ASC;");
+            Medier = _repo.GetAll();
             return Page();
         }
     }

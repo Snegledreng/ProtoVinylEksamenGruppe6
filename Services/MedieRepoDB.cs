@@ -46,12 +46,12 @@ namespace ProtoVinylEksamenGruppe6.Services
             throw new NotImplementedException();
         }
 
-        public List<Medie> GetAll(string typestring)
+        public List<Medie> GetAll()
         {
             List<Medie> medier = new List<Medie>();
             SqlConnection conn = new SqlConnection(Secret.ConnectionString);
             conn.Open();
-            SqlCommand command = new SqlCommand(typestring, conn);
+            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id", conn);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -63,15 +63,14 @@ namespace ProtoVinylEksamenGruppe6.Services
         }
 
         //Her arbejdes med sortering
-        //public List<Medie> SorterEfterTitel(List<Medie> medier) 
-        //{ 
-        //    return medier.OrderByDescending(t => t.Titel).ToList();
-        //}
+        public List<Medie> SorterEfterTitel(List<Medie> medier)
+        {
+            return medier.OrderBy(t => t.Titel).ToList();
+        }
 
-        //public List<Medie> SorterEfterKunstner(List<Medie> medier)
-        //{
-        //    return medier.OrderByDescending(t => t.Kunstner).ToList();
-
-        //}
+        public List<Medie> SorterEfterKunstner(List<Medie> medier)
+        {
+            return medier.OrderBy(t => t.Kunstner).ToList();
+        }
     }
 }

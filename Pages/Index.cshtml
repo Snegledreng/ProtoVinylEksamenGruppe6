@@ -28,8 +28,10 @@
     <tbody>
         @foreach (var m in Model.Medier)
         {
-            <tr>
-                <td>@m.Kunstner</td>
+            @if (m.Type == "Vinyl" && m.Reserveret==false)
+            {
+                <tr>
+                    <td>@m.Kunstner</td>
                 <td>@m.Titel</td>
                 <td>@m.År</td>
                 <td>@m.Genre</td>
@@ -38,6 +40,7 @@
                 <td>@m.Type</td>
                 <td>@m.VinylType</td>
             </tr>
+            }
         }
 
     </tbody>
