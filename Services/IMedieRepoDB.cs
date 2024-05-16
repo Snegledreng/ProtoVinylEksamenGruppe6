@@ -10,6 +10,9 @@ namespace ProtoVinylEksamenGruppe6.Services
         Medie DeleteById(int id);
         Medie GetById(int id);
         public List<Medie> GetAll(string typestring);
+        //public List<Medie> SorterEfterTitel(List<Medie> medier);
+        //public List<Medie> SorterEfterKunstner(List<Medie> medier);
+
 
     }
 }
