@@ -5,8 +5,44 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>Kunstner</th>
-            <th>Titel</th>
+            <th class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="Kunstner" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Kunstner
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="Kunstner">
+                    <li>
+                        <form method="post" asp-page-handler="SorterKunstner">
+                            <button type="submit" class="btn btn-primary">Sorter stigende</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" asp-page-handler="SorterKunstnerDESC">
+                            <button type="submit" class="btn btn-primary">Sorter faldende</button>
+                        </form>
+                    </li>
+                </ul>
+
+            </th>
+            <th class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="Titel" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Titel
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="Titel">
+                    <li>
+                        <form method="post" asp-page-handler="SorterTitel">
+                            <button type="submit" class="btn btn-primary">Sorter stigende</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" asp-page-handler="SorterTitelDESC">
+                            <button type="submit" class="btn btn-primary">Sorter faldende</button>
+                        </form>
+                    </li>
+                </ul>
+
+            </th>
             <th>År</th>
             <th>Genre</th>
             <th>Stand</th>

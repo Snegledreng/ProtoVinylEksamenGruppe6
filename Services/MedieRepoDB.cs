@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using ProtoVinylEksamenGruppe6.Model;
+using System.Diagnostics.Metrics;
 
 namespace ProtoVinylEksamenGruppe6.Services
 {
@@ -62,15 +63,23 @@ namespace ProtoVinylEksamenGruppe6.Services
             return medier;
         }
 
-        //Her arbejdes med sortering
+        //Sorteringsfunktioner
         public List<Medie> SorterEfterTitel(List<Medie> medier)
         {
-            return medier.OrderBy(t => t.Titel).ToList();
+                return medier.OrderBy(t => t.Titel).ToList();
+        }
+        public List<Medie> SorterEfterTitelDESC(List<Medie> medier)
+        {
+            return medier.OrderByDescending(t => t.Titel).ToList();
         }
 
         public List<Medie> SorterEfterKunstner(List<Medie> medier)
         {
             return medier.OrderBy(t => t.Kunstner).ToList();
+        }
+        public List<Medie> SorterEfterKunstnerDESC(List<Medie> medier)
+        {
+            return medier.OrderByDescending(t => t.Kunstner).ToList();
         }
     }
 }

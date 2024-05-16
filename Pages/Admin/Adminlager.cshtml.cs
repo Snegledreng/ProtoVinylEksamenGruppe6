@@ -20,5 +20,29 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
         {
             Medier = _repo.GetAll();
         }
+        public IActionResult OnPostSorterTitel()
+        {
+            Medier = _repo.GetAll();
+            Medier = _repo.SorterEfterTitel(Medier);
+            return Page();
+        }
+        public IActionResult OnPostSorterTitelDESC()
+        {
+            Medier = _repo.GetAll();
+            Medier = _repo.SorterEfterTitelDESC(Medier);
+            return Page();
+        }
+        public IActionResult OnPostSorterKunstner()
+        {
+            Medier = _repo.GetAll();
+            Medier = _repo.SorterEfterKunstner(Medier);
+            return Page();
+        }
+        public IActionResult OnPostSorterKunstnerDESC()
+        {
+            Medier = _repo.GetAll();
+            Medier = _repo.SorterEfterKunstnerDESC(Medier);
+            return Page();
+        }
     }
 }
