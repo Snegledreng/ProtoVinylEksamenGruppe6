@@ -23,11 +23,15 @@ namespace ProtoVinylEksamenGruppe6.Pages
         public IActionResult OnPostSorterTitel()
         {
             Medier = _repo.GetAll();
+            Medier = _repo.SorterEfterTitel(Medier);
+
             return Page();
         }
         public IActionResult OnPostSorterKunstner()
         {
             Medier = _repo.GetAll();
+            Medier = _repo.SorterEfterKunstner(Medier);
+
             return Page();
         }
     }
