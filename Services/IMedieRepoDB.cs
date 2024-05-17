@@ -1,4 +1,5 @@
 ﻿using ProtoVinylEksamenGruppe6.Model;
+using System.Text;
 
 namespace ProtoVinylEksamenGruppe6.Services
 {
@@ -14,6 +15,7 @@ namespace ProtoVinylEksamenGruppe6.Services
         public List<Medie> SorterEfterTitelDESC(List<Medie> medier);
         public List<Medie> SorterEfterKunstner(List<Medie> medier);
         public List<Medie> SorterEfterKunstnerDESC(List<Medie> medier);
+        public List<Medie> Search(string? query);
 
 
     }

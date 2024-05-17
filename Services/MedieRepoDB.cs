@@ -102,5 +102,24 @@ namespace ProtoVinylEksamenGruppe6.Services
         {
             return medier.OrderByDescending(t => t.Kunstner).ToList();
         }
+
+        //Søgning
+
+        public List<Medie> Search(string? query)
+        {
+            List<Medie> resMedier = new List<Medie>(GetAll());
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                resMedier = resMedier.FindAll(m =>
+                    (m.Titel != null && m.Titel.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                    (m.Kunstner != null && m.Kunstner.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                    (m.Genre != null && m.Genre.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                    (m.Stand != null && m.Stand.Contains(query, StringComparison.OrdinalIgnoreCase))
+                );
+            }
+
+            return resMedier;
+        }
     }
 }

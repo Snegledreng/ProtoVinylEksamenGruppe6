@@ -44,5 +44,10 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
             Medier = _repo.SorterEfterKunstnerDESC(Medier);
             return Page();
         }
+        public IActionResult OnPostSearch(string query)
+        {
+            Medier = _repo.Search(query);
+            return Page();
+        }
     }
 }
