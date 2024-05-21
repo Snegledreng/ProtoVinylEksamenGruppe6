@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using ProtoVinylEksamenGruppe6.Model;
 using System.Diagnostics.Metrics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ProtoVinylEksamenGruppe6.Services
 {
@@ -40,13 +41,26 @@ namespace ProtoVinylEksamenGruppe6.Services
 
         public Medie DeleteById(int id)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection(Secret.ConnectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand("DELETE FROM Vinyl_Medie WHERE medie_ID = @id", conn);
+            command.Parameters.AddWithValue("@id", id);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected == 0)
+            {
+                throw new ArgumentException("Nul rækker ændret. Medie med ID " + id + " blev ikke slettet.");
+            }
+
+            conn.Close();
+            return null; // Returnér null eller en passende værdi afhængigt af dine behov
         }
 
         public Medie ReadMedie(SqlDataReader reader)
         {
             {
                 Medie medie = new Medie();
+                medie.Id = reader.GetInt32(0);
                 medie.Titel = reader.GetString(1);
                 medie.Kunstner = reader.GetString(2);
                 medie.År = reader.GetInt32(3);
@@ -63,10 +77,45 @@ namespace ProtoVinylEksamenGruppe6.Services
             }
         }
 
+
+        public Medie ReadMedieUdenJoin(SqlDataReader reader)
+        {
+            {
+                Medie medie = new Medie();
+                medie.Id = reader.GetInt32(0);
+                medie.Titel = reader.GetString(1);
+                medie.Kunstner = reader.GetString(2);
+                medie.År = reader.GetInt32(3);
+                //medie.Genre = reader.GetString(4);
+                //medie.Stand = reader.GetString(5);
+                medie.Pris = reader.GetInt32(6);
+                medie.Type = reader.GetString(7);
+                if (!reader.IsDBNull(8))
+                {
+                    medie.VinylType = reader.GetString(8);
+                }
+                medie.Reserveret = reader.GetBoolean(9);
+                return medie;
+            }
+        }
+
         public Medie GetById(int id)
         {
-            throw new NotImplementedException();
+            Medie medie = null;
+            SqlConnection conn = new SqlConnection(Secret.ConnectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand("SELECT * FROM Vinyl_Medie WHERE medie_Id=@Id", conn);
+            command.Parameters.AddWithValue("@Id", id); 
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                medie = ReadMedieUdenJoin(reader);
+            }
+            conn.Close();
+            return medie;
         }
+
+        //Get By Name
 
         public List<Medie> GetAll()
         {
@@ -121,5 +170,7 @@ namespace ProtoVinylEksamenGruppe6.Services
 
             return resMedier;
         }
+
+       
     }
 }

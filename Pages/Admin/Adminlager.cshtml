@@ -57,12 +57,14 @@
             <th>Type</th>
             <th>Vinyltype</th>
             <th>Reservationsstatus</th>
+            <th> </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var m in Model.Medier)
         {
             <tr>
+
                 <td>@m.Kunstner</td>
                 <td>@m.Titel</td>
                 <td>@m.År</td>
@@ -71,9 +73,8 @@
                 <td>@m.Pris</td>
                 <td>@m.Type</td>
                 <td>@m.VinylType</td>
-                @if (m.Reserveret) {
-                    <td>Reserveret</td>
-                }
+                <td>@(m.Reserveret ? "Reserveret" : " ")</td>
+                <td><a asp-page="AdminDelete" asp-route-id="@m.Id">Slet</a></td>
 
             </tr>
         }

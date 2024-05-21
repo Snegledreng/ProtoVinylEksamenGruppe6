@@ -6,6 +6,9 @@ namespace ProtoVinylEksamenGruppe6.Model
     public class Medie
     {
         //instansfelter
+        //
+        private int? _id;
+        //
         private string? _titel;
         private string? _kunstner;
         private int _år;
@@ -17,6 +20,9 @@ namespace ProtoVinylEksamenGruppe6.Model
         private bool _reserveret;
 
         //properties
+        //
+        public int? Id { get { return _id; } set { _id = value; } }
+        //
         public string? Titel { get { return _titel; } set { _titel = value; } }
         public string? Kunstner { get { return _kunstner; } set { _kunstner = value; } }
         public int År { get { return _år; } set { _år = value; } }
