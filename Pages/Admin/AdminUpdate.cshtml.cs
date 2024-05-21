@@ -16,7 +16,6 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
 
         public Medie OldMedie { get; set; }
 
-        public int OldId { get; set; }
         [BindProperty] public string NyKunstner { get; set; }
         [BindProperty] public string NyTitel { get; set; }
         [BindProperty] public int Ny≈r { get; set; }
@@ -30,7 +29,6 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
 
         public IActionResult OnGet(int Id)
         {
-            OldId = Id;
             OldMedie = _repo.GetById(Id);
             NyKunstner = OldMedie.Kunstner;
             NyTitel = OldMedie.Titel;
@@ -41,16 +39,14 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
             NyType = OldMedie.Type;
             NyVinylType = OldMedie.VinylType;
 
-            if (OldMedie == null)
-            {
-                return RedirectToPage("Adminlager");
-            }
+
             return Page();
         }
 
-        public IActionResult OnPostUpdate()
+        public IActionResult OnPostUpdate(int Id)
         {
             Genre = NyGenre switch
+
             {
                 "Pop" => "1",
                 "Hiphop" => "2",
@@ -86,7 +82,7 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
             };
 
             Medie opdateretMedie = new Medie();
-            opdateretMedie.Id = OldId;
+            opdateretMedie.Id = Id;
             opdateretMedie.Kunstner = NyKunstner;
             opdateretMedie.Titel = NyTitel;
             opdateretMedie.≈r = Ny≈r;
@@ -97,7 +93,7 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
             opdateretMedie.VinylType = NyVinylType;
 
 
-            _repo.Update(OldId, opdateretMedie);
+            _repo.Update(opdateretMedie);
 
             return RedirectToPage("Adminlager");
         }

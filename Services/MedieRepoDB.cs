@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using ProtoVinylEksamenGruppe6.Model;
 using System.Diagnostics.Metrics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Reflection.PortableExecutable;
 
 namespace ProtoVinylEksamenGruppe6.Services
 {
@@ -34,28 +35,44 @@ namespace ProtoVinylEksamenGruppe6.Services
             return newMedie;
         }
 
-        public Medie Update(int id, Medie updatedMedie)
+        public Medie Update(Medie opdateretMedie)
         {
-            if (id != updatedMedie.Id)
-            {
-                throw new ArgumentException("Kan ikke opdatere: id er forskellig fra id Medie");
-            }
             SqlConnection connection = new SqlConnection(Secret.ConnectionString);
             connection.Open();
 
-            SqlCommand cmd = new SqlCommand("update Vinyl_Medie set Kunstner=@kunstner, Titel=@titel, År=@år, Genre=@genre, Stand=@stand, Pris=@pris, Type=@type, VinylType=@vinyltype where Id=@id", connection);
-            cmd.Parameters.AddWithValue("@Id", updatedMedie.Id);
-            cmd.Parameters.AddWithValue("@kunstner", updatedMedie.Kunstner);
-            cmd.Parameters.AddWithValue("@titel", updatedMedie.Titel);
-            cmd.Parameters.AddWithValue("@år", updatedMedie.År);
-            cmd.Parameters.AddWithValue("@genre", updatedMedie.Genre);
-            cmd.Parameters.AddWithValue("@stand", updatedMedie.Stand);
-            cmd.Parameters.AddWithValue("@pris", updatedMedie.Pris);
-            cmd.Parameters.AddWithValue("@type", updatedMedie.Type);
-            cmd.Parameters.AddWithValue("@vinyltype", updatedMedie.VinylType);
+            SqlCommand cmd =
+                new SqlCommand(
+                    "UPDATE Vinyl_Medie SET Kunstner = @kunstner, Titel = @titel, År = @år, Genre = @genre, Stand = @stand, Pris = @pris, Type = @type, VinylType = @vinyltype WHERE Medie_ID = @id",
+                    connection);
+            cmd.Parameters.AddWithValue("@Id", opdateretMedie.Id);
+            cmd.Parameters.AddWithValue("@kunstner", opdateretMedie.Kunstner);
+            cmd.Parameters.AddWithValue("@titel", opdateretMedie.Titel);
+            cmd.Parameters.AddWithValue("@år", opdateretMedie.År);
+            cmd.Parameters.AddWithValue("@genre", opdateretMedie.Genre);
+            cmd.Parameters.AddWithValue("@stand", opdateretMedie.Stand);
+            cmd.Parameters.AddWithValue("@pris", opdateretMedie.Pris);
+            cmd.Parameters.AddWithValue("@type", opdateretMedie.Type);
+            if (opdateretMedie.VinylType != null)
+            {
+                cmd.Parameters.AddWithValue("@vinyltype", opdateretMedie.VinylType);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Vinyltype", " ");
+            }
+
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected == 0)
+            {
+                throw new ArgumentException("Nul rækker ændret. Medie med ID " + "x" + " blev ikke ændret.");
+            }
+            if (rowsAffected > 1)
+            {
+                throw new ArgumentException("du har fucked hele databasen");
+            }
 
             connection.Close();
-            return updatedMedie;
+            return opdateretMedie;
         }
 
         public Medie DeleteById(int id)

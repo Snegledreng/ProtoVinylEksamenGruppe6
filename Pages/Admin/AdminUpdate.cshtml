@@ -6,7 +6,7 @@
 <h1>Ændring af medie:</h1>
 
 <form method="post">
-    <div class="form-group>">
+    <div class="form-group">
         <label>Kunstner</label><br />
         <input class="form-control" asp-for="@Model.NyKunstner" /><br />
 
@@ -18,6 +18,7 @@
 
         <label>Genre</label><br />
         <select class="form-control" asp-for="@Model.NyGenre">
+            <option value="">Vælg en genre</option>
             <option value="Pop">Pop</option>
             <option value="Hip hop">Hip hop</option>
             <option value="Rock">Rock</option>
@@ -41,6 +42,7 @@
 
         <label>Stand</label><br />
         <select class="form-control" asp-for="@Model.NyStand">
+            <option value="">Vælg en stand</option>
             <option value="Mint">Mint</option>
             <option value="NM">Near Mint</option>
             <option value="VG+">Very Good+</option>
@@ -63,6 +65,7 @@
 
 
 
+        <input type="hidden" name="Id" value="@Model.OldMedie.Id" />
 
         <input type="submit" value="Opdater Medie" class="btn btn-success" asp-page-handler="Update" />
         <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />

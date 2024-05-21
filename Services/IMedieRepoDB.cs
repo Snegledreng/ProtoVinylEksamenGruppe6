@@ -7,7 +7,7 @@ namespace ProtoVinylEksamenGruppe6.Services
     {
 
         Medie CreateMedie(Medie newMedie);
-        Medie Update(int id, Medie updatedMedie);
+        Medie Update(Medie opdateretMedie);
         Medie DeleteById(int id);
         Medie GetById(int id);
 
