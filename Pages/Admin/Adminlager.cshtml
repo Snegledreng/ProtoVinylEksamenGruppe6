@@ -58,6 +58,7 @@
             <th>Vinyltype</th>
             <th>Reservationsstatus</th>
             <th> </th>
+            <th> </th>
         </tr>
     </thead>
     <tbody>
@@ -74,7 +75,9 @@
                 <td>@m.Type</td>
                 <td>@m.VinylType</td>
                 <td>@(m.Reserveret ? "Reserveret" : " ")</td>
+                <td><a asp-page="AdminUpdate" asp-route-id="@m.Id">Opdater</a></td>
                 <td><a asp-page="AdminDelete" asp-route-id="@m.Id">Slet</a></td>
+
 
             </tr>
         }

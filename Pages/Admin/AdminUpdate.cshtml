@@ -1,0 +1,70 @@
+﻿@page
+@model ProtoVinylEksamenGruppe6.Pages.Admin.AdminUpdateModel
+@{
+}
+
+<h1>Ændring af medie:</h1>
+
+<form method="post">
+    <div class="form-group>">
+        <label>Kunstner</label><br />
+        <input class="form-control" asp-for="@Model.NyKunstner" /><br />
+
+        <label>Titel</label><br />
+        <input class="form-control" asp-for="@Model.NyTitel" /><br />
+
+        <label>Udgivelsesår</label><br />
+        <input class="form-control" asp-for="@Model.NyÅr" /><br />
+
+        <label>Genre</label><br />
+        <select class="form-control" asp-for="@Model.NyGenre">
+            <option value="Pop">Pop</option>
+            <option value="Hip hop">Hip hop</option>
+            <option value="Rock">Rock</option>
+            <option value="RnB">RnB</option>
+            <option value="Soul">Soul</option>
+            <option value="Reggae">Reggae</option>
+            <option value="Country">Country</option>
+            <option value="Funk">Funk</option>
+            <option value="Folk">Folk</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Disco">Disco</option>
+            <option value="Klassisk">Klassisk</option>
+            <option value="Elektronisk">Elektronisk</option>
+            <option value="Blues">Blues</option>
+            <option value="Børnemusik">Børnemusik</option>
+            <option value="New-age">New-age</option>
+            <option value="Ska">Ska</option>
+            <option value="Traditionelt">Traditionelt</option>
+            <option value="Indie">Indie</option>
+        </select><br />
+
+        <label>Stand</label><br />
+        <select class="form-control" asp-for="@Model.NyStand">
+            <option value="Mint">Mint</option>
+            <option value="NM">Near Mint</option>
+            <option value="VG+">Very Good+</option>
+            <option value="VG">Very Good</option>
+            <option value="Bad">Bad</option>
+            <option value="Ny">Ny</option>
+
+        </select><br />
+
+        <label>Pris</label><br />
+        <input class="form-control" asp-for="@Model.NyPris" /><br />
+
+        <label>Type</label><br />
+        <input class="form-control" asp-for="@Model.NyType" /><br />
+
+        <label>Vinyltype</label><br />
+        <input class="form-control" asp-for="@Model.NyVinylType" /><br />
+
+
+
+
+
+
+        <input type="submit" value="Opdater Medie" class="btn btn-success" asp-page-handler="Update" />
+        <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
+    </div>
+</form>

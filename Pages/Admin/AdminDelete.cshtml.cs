@@ -21,18 +21,14 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
         public Medie DeleteMedie { get; set; }
 
 
-        // The OnGet method retrieves the member to be deleted
         public IActionResult OnGet(int Id)
         {
-            // Attempt to retrieve the member by ID
             DeleteMedie = _repo.GetById(Id);
 
-            // If no member is found, redirect to the index page
             if (DeleteMedie == null)
             {
                 return RedirectToPage(nameof(Index));
             }
-            // Return to the page with the member data
             return Page();
         }
 
@@ -41,12 +37,5 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
             _repo.DeleteById(Id);
             return RedirectToPage("Adminlager");
         }
-
-
-        //public void OnGet()
-        //{
-            
-        //}
-
     }
 }

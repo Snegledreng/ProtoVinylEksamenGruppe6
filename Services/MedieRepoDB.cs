@@ -36,7 +36,26 @@ namespace ProtoVinylEksamenGruppe6.Services
 
         public Medie Update(int id, Medie updatedMedie)
         {
-            throw new NotImplementedException();
+            if (id != updatedMedie.Id)
+            {
+                throw new ArgumentException("Kan ikke opdatere: id er forskellig fra id Medie");
+            }
+            SqlConnection connection = new SqlConnection(Secret.ConnectionString);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand("update Vinyl_Medie set Kunstner=@kunstner, Titel=@titel, År=@år, Genre=@genre, Stand=@stand, Pris=@pris, Type=@type, VinylType=@vinyltype where Id=@id", connection);
+            cmd.Parameters.AddWithValue("@Id", updatedMedie.Id);
+            cmd.Parameters.AddWithValue("@kunstner", updatedMedie.Kunstner);
+            cmd.Parameters.AddWithValue("@titel", updatedMedie.Titel);
+            cmd.Parameters.AddWithValue("@år", updatedMedie.År);
+            cmd.Parameters.AddWithValue("@genre", updatedMedie.Genre);
+            cmd.Parameters.AddWithValue("@stand", updatedMedie.Stand);
+            cmd.Parameters.AddWithValue("@pris", updatedMedie.Pris);
+            cmd.Parameters.AddWithValue("@type", updatedMedie.Type);
+            cmd.Parameters.AddWithValue("@vinyltype", updatedMedie.VinylType);
+
+            connection.Close();
+            return updatedMedie;
         }
 
         public Medie DeleteById(int id)
@@ -77,39 +96,17 @@ namespace ProtoVinylEksamenGruppe6.Services
             }
         }
 
-
-        public Medie ReadMedieUdenJoin(SqlDataReader reader)
-        {
-            {
-                Medie medie = new Medie();
-                medie.Id = reader.GetInt32(0);
-                medie.Titel = reader.GetString(1);
-                medie.Kunstner = reader.GetString(2);
-                medie.År = reader.GetInt32(3);
-                //medie.Genre = reader.GetString(4);
-                //medie.Stand = reader.GetString(5);
-                medie.Pris = reader.GetInt32(6);
-                medie.Type = reader.GetString(7);
-                if (!reader.IsDBNull(8))
-                {
-                    medie.VinylType = reader.GetString(8);
-                }
-                medie.Reserveret = reader.GetBoolean(9);
-                return medie;
-            }
-        }
-
         public Medie GetById(int id)
         {
             Medie medie = null;
             SqlConnection conn = new SqlConnection(Secret.ConnectionString);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM Vinyl_Medie WHERE medie_Id=@Id", conn);
-            command.Parameters.AddWithValue("@Id", id); 
+            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id WHERE Medie_ID=@Id", conn);
+            command.Parameters.AddWithValue("@Id", id);
             SqlDataReader reader = command.ExecuteReader();
             if (reader.Read())
             {
-                medie = ReadMedieUdenJoin(reader);
+                medie = ReadMedie(reader);
             }
             conn.Close();
             return medie;
@@ -136,7 +133,7 @@ namespace ProtoVinylEksamenGruppe6.Services
         //Sorteringsfunktioner;)
         public List<Medie> SorterEfterTitel(List<Medie> medier)
         {
-                return medier.OrderBy(t => t.Titel).ToList();
+            return medier.OrderBy(t => t.Titel).ToList();
         }
         public List<Medie> SorterEfterTitelDESC(List<Medie> medier)
         {
@@ -171,6 +168,6 @@ namespace ProtoVinylEksamenGruppe6.Services
             return resMedier;
         }
 
-       
+
     }
 }
