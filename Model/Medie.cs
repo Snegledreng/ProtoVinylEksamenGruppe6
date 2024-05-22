@@ -35,5 +35,13 @@ namespace ProtoVinylEksamenGruppe6.Model
 
         //konstruktør
         public Medie() { }
+
+
+        //Bliver brugt til at sammenligne objekter til kurv
+        public override bool Equals(object? obj)
+        {
+            return obj is Medie medie &&
+                   _id == medie._id;
+        }
     }
 }

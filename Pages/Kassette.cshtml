@@ -7,7 +7,9 @@
     <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg" name="query" style="width: 300px;">
     <button class="btn btn-outline-success" type="submit">Søg</button>
 </form>
-
+<header>
+    Produkter i kurven: @Model.KurvTæller
+</header>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -69,7 +71,11 @@
                     <td>@m.Stand</td>
                     <td>@m.Pris</td>
                     <td>@m.Type</td>
-                    <td>@m.VinylType</td>
+                    <td>
+                        <form method="post" asp-page-handler="TilføjTilKurv" asp-route-id="@m.Id">
+                            <button type="submit" class="btn btn-primary">Til Kurv</button>
+                        </form>
+                    </td>
                 </tr>
             }
         }

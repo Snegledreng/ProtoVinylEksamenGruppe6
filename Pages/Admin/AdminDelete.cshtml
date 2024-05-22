@@ -4,27 +4,34 @@
 }
 
 <form method="post">
-    <div class="col-6">
-        <div class="row">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
             <h1>Vil du slette dette medie?</h1>
-            <p>&nbsp;</p>
             <strong>
-                <label>Navn:&nbsp; @Model.DeleteMedie.Kunstner</label><br />
-                
-                <label>Mobil: @Model.DeleteMedie.Titel</label><br />
-                
-                <label>Pris:&nbsp; @Model.DeleteMedie.Pris</label><br />
+                <label>Kunstner: @Model.DeleteMedie.Kunstner</label><br />
+
+                <label>Titel: @Model.DeleteMedie.Titel</label><br />
+
+                <label>Stand:@Model.DeleteMedie.Stand</label><br />
+
+                <label>Pris: @Model.DeleteMedie.Pris</label><br />
+
+                <label>Reserveret: @(Model.DeleteMedie.Reserveret ? "Reserveret" : "Ikke reserveret")</label><br />
             </strong>
         </div>
-    </div>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <div class="row">
-        <div class="col-3">
+        <div class="col-3"></div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
             <input type="hidden" name="Id" value="@Model.DeleteMedie.Id" />
-            <input type="submit" value="Slet" class="btn btn-danger" />&nbsp;&nbsp;&nbsp;
+            <input type="submit" value="Slet" class="btn btn-success" />&nbsp;&nbsp;&nbsp;
 
-            <a href="/Admin/Adminlager" class="btn btn-secondary">Fortryd</a>
+            <a href="/Admin/Adminlager" class="btn btn-danger">Fortryd</a>
+            </div>
+            <div class="col-3"></div>
         </div>
     </div>
 </form>

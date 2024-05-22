@@ -8,7 +8,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IMedieRepoDB>(new MedieRepoDB());
 builder.Services.AddSingleton<IReservationRepoDB>(new ReservationRepoDB());
 
-
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -24,6 +24,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

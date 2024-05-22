@@ -4,6 +4,7 @@ using ProtoVinylEksamenGruppe6.Model;
 using System.Diagnostics.Metrics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Reflection.PortableExecutable;
+using System.Collections.Immutable;
 
 namespace ProtoVinylEksamenGruppe6.Services
 {
@@ -100,8 +101,8 @@ namespace ProtoVinylEksamenGruppe6.Services
                 medie.Titel = reader.GetString(1);
                 medie.Kunstner = reader.GetString(2);
                 medie.År = reader.GetInt32(3);
-                medie.Genre = reader.GetString(4);
-                medie.Stand = reader.GetString(5);
+                medie.Genre = reader.GetString(4).Trim();
+                medie.Stand = reader.GetString(5).Trim();
                 medie.Pris = reader.GetInt32(6);
                 medie.Type = reader.GetString(7);
                 if (!reader.IsDBNull(8))

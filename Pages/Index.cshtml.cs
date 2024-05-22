@@ -15,10 +15,21 @@ namespace ProtoVinylEksamenGruppe6.Pages
         }
 
         public List<Medie> Medier { get; set; }
+        public int KurvTæller { get; set; }
 
         public void OnGet()
         {
             Medier = _repo.GetAll();
+            Kurv kurv = null;
+            try
+            {
+                kurv = SessionHelper.Get<Kurv>(HttpContext);
+            }
+            catch
+            {
+                kurv = new Kurv();
+            }
+            KurvTæller = kurv.MedieList.Count;
         }
 
         public IActionResult OnPostSorterTitel()
@@ -49,6 +60,29 @@ namespace ProtoVinylEksamenGruppe6.Pages
         public IActionResult OnPostSearch(string query)
         {
             Medier = _repo.Search(query);
+            return Page();
+        }
+
+        public IActionResult OnPostTilføjTilKurv(int id)
+        {
+            Kurv kurv = null;
+            try
+            {
+                kurv = SessionHelper.Get<Kurv>(HttpContext);
+            }
+            catch
+            {
+                kurv = new Kurv();
+            }
+            if (!kurv.MedieList.Contains(_repo.GetById(id)))
+            {
+                kurv.MedieList.Add(_repo.GetById(id));
+            }
+            SessionHelper.Set(kurv, HttpContext);
+
+
+            KurvTæller = kurv.MedieList.Count;
+            Medier = _repo.GetAll();
             return Page();
         }
     }
