@@ -1,0 +1,42 @@
+﻿@page
+@model ProtoVinylEksamenGruppe6.Pages.KurvModel
+@{
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Kunstner</th>
+            <th>Titel</th>
+            <th>År</th>
+            <th>Genre</th>
+            <th>Stand</th>
+            <th>Pris</th>
+            <th>Type</th>
+            <th>Vinyltype</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model.Medier)
+        {
+                <tr>
+                    <td>@m.Kunstner</td>
+                    <td>@m.Titel</td>
+                    <td>@m.År</td>
+                    <td>@m.Genre</td>
+                    <td>@m.Stand</td>
+                    <td>@m.Pris</td>
+                    <td>@m.Type</td>
+                    <td>@m.VinylType</td>
+                    <td>
+                        <form method="post" asp-page-handler="Slet" asp-route-id="@m.Id">
+                            <button type="submit" class="btn btn-primary">Slet</button>
+                        </form>
+                    </td>
+
+                </tr>
+            
+        }
+        Samlet pris: @Model.TotalPris&nbsp;kr
+    </tbody>
+</table>

@@ -80,9 +80,8 @@ namespace ProtoVinylEksamenGruppe6.Pages
             SessionHelper.Set(kurv, HttpContext);
 
 
-            KurvTæller = kurv.MedieList.Count;
-            Medier = _repo.GetAll();
-            return Page();
+            return RedirectToPage();
+
         }
     }
 }
