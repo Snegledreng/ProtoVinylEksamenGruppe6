@@ -5,6 +5,30 @@ namespace ProtoVinylEksamenGruppe6.Services
 {
     public class ReservationRepoDB : IReservationRepoDB
     {
+        public void OpretReservation(List<Reservation> reservations)
+        {
+
+            SqlConnection conn = new SqlConnection(Secret.ConnectionString);
+            conn.Open();
+            foreach (Reservation reservation in reservations)
+            {
+                SqlCommand command =
+                    new SqlCommand("INSERT INTO Vinyl_Reservation values (@medie,@kundenavn,@kundetelefon)", conn);
+                command.Parameters.AddWithValue("@medie", reservation.Medie.Id);
+                command.Parameters.AddWithValue("@kundenavn", reservation.KundeNavn);
+                command.Parameters.AddWithValue("@kundetelefon", reservation.KundeTelefon);
+                command.ExecuteNonQuery();
+                SqlCommand command2 = new SqlCommand("UPDATE Vinyl_Medie SET Reserveret = 1 WHERE Medie_ID=@medieid", conn);
+                command2.Parameters.AddWithValue("@medieid", reservation.Medie.Id);
+                command2.ExecuteNonQuery();
+            }
+
+
+            conn.Close();
+
+
+        }
+
         public Reservation ReadReservation(SqlDataReader reader)
         {
             {

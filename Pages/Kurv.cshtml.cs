@@ -7,7 +7,12 @@ namespace ProtoVinylEksamenGruppe6.Pages
 {
     public class KurvModel : PageModel
     {
+        private readonly IReservationRepoDB _repo;
 
+        public KurvModel(IReservationRepoDB repo)
+        {
+            _repo = repo;
+        }
 
         public List<Medie> Medier { get; set; } = new List<Medie> { };
         public int TotalPris {  get; set; }
@@ -47,6 +52,22 @@ namespace ProtoVinylEksamenGruppe6.Pages
             return RedirectToPage();
         }
 
+        public IActionResult OnPostOpretReservation()
+        {
+            Kurv kurv = SessionHelper.Get<Kurv>(HttpContext);
+            List<Reservation> reservationList = new List<Reservation>();
+            foreach (var m in kurv.MedieList)
+            {
+                Reservation r = new Reservation();
+                r.Medie = m;
+                r.KundeNavn = KundeNavn;
+                r.KundeTelefon = KundeTelefon;
+                reservationList.Add(r);
+            }
+            _repo.OpretReservation(reservationList);
+            SessionHelper.Clear<Kurv>(HttpContext);
 
+            return RedirectToPage("ReservationBekræftet");
+        }
     }
 }
