@@ -2,41 +2,62 @@
 @model ProtoVinylEksamenGruppe6.Pages.KurvModel
 @{
 }
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Kunstner</th>
-            <th>Titel</th>
-            <th>År</th>
-            <th>Genre</th>
-            <th>Stand</th>
-            <th>Pris</th>
-            <th>Type</th>
-            <th>Vinyltype</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var m in Model.Medier)
-        {
-                <tr>
-                    <td>@m.Kunstner</td>
-                    <td>@m.Titel</td>
-                    <td>@m.År</td>
-                    <td>@m.Genre</td>
-                    <td>@m.Stand</td>
-                    <td>@m.Pris</td>
-                    <td>@m.Type</td>
-                    <td>@m.VinylType</td>
-                    <td>
-                        <form method="post" asp-page-handler="Slet" asp-route-id="@m.Id">
-                            <button type="submit" class="btn btn-primary">Slet</button>
-                        </form>
-                    </td>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-sm-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Kunstner</th>
+                        <th>Titel</th>
+                        <th>År</th>
+                        <th>Genre</th>
+                        <th>Stand</th>
+                        <th>Pris</th>
+                        <th>Type</th>
+                        <th>Vinyltype</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var m in Model.Medier)
+                    {
+                        <tr>
+                            <td>@m.Kunstner</td>
+                            <td>@m.Titel</td>
+                            <td>@m.År</td>
+                            <td>@m.Genre</td>
+                            <td>@m.Stand</td>
+                            <td>@m.Pris</td>
+                            <td>@m.Type</td>
+                            <td>@m.VinylType</td>
+                            <td>
+                                <form method="post" asp-page-handler="Slet" asp-route-id="@m.Id">
+                                    <button type="submit" class="btn btn-primary">Slet</button>
+                                </form>
+                            </td>
 
-                </tr>
-            
-        }
-        Samlet pris: @Model.TotalPris&nbsp;kr
-    </tbody>
-</table>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+            <br />
+            <h1>Opret Reservation Her:</h1>
+            <br />
+            <form method="post" asp-page-handler="OpretReservation">
+                <label>Indtast navn:</label><br />
+                <input class="form-control" asp-for="@Model.KundeNavn" /><br />
+                <label>Indtast telefonnummer:</label><br />
+                <input class="form-control" asp-for="@Model.KundeTelefon" /><br />
+                <br />
+                Samlet pris: @Model.TotalPris&nbsp;kr <br />
+                <br />
+                <button type="submit" class="btn btn-success">Reserver</button>
+
+            </form>
+        </div>
+    </div>
+</div>

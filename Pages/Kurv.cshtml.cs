@@ -12,6 +12,9 @@ namespace ProtoVinylEksamenGruppe6.Pages
         public List<Medie> Medier { get; set; } = new List<Medie> { };
         public int TotalPris {  get; set; }
 
+        [BindProperty] public string KundeNavn { get; set; }
+        [BindProperty] public string KundeTelefon { get; set; }
+
         public void OnGet()
         {
             Kurv kurv = null;
@@ -43,5 +46,7 @@ namespace ProtoVinylEksamenGruppe6.Pages
 
             return RedirectToPage();
         }
+
+
     }
 }
