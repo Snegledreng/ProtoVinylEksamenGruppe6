@@ -83,14 +83,10 @@ namespace ProtoVinylEksamenGruppe6.Services
             SqlCommand command = new SqlCommand("DELETE FROM Vinyl_Medie WHERE medie_ID = @id", conn);
             command.Parameters.AddWithValue("@id", id);
 
-            int rowsAffected = command.ExecuteNonQuery();
-            if (rowsAffected == 0)
-            {
-                throw new ArgumentException("Nul rækker ændret. Medie med ID " + id + " blev ikke slettet.");
-            }
+            command.ExecuteNonQuery();
 
             conn.Close();
-            return null; // Returnér null eller en passende værdi afhængigt af dine behov
+            return null;
         }
 
         public Medie ReadMedie(SqlDataReader reader)
@@ -137,7 +133,7 @@ namespace ProtoVinylEksamenGruppe6.Services
             List<Medie> medier = new List<Medie>();
             SqlConnection conn = new SqlConnection(Secret.ConnectionString);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id", conn);
+            SqlCommand command = new SqlCommand("SELECT vm.medie_ID, vm.titel, vm.kunstner, vm.år, vg.Genre, vs.stand, vm.pris, vm.type, vm.vinyltype, vm.reserveret FROM dbo.Vinyl_Medie vm INNER JOIN  dbo.Vinyl_Genre vg ON vm.genre = vg.Id INNER JOIN dbo.Vinyl_Stand vs ON vm.stand = vs.Id ORDER BY vm.kunstner", conn);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {

@@ -2,7 +2,6 @@
 @model AdminStartModel
 @{
 }
-<a href="/Admin/AdminOpret" class="btn btn-success">Opret</a>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -14,9 +13,10 @@
             <th>Pris</th>
             <th>Type</th>
             <th>Vinyltype</th>
-            <th>Reservationsstatus</th>
             <th>Kundenavn</th>
             <th>Kundetelefon</th>
+            <th>Gennemfør salg</th>
+            <th>Send tilbage til lager</th>
         </tr>
     </thead>
     <tbody>
@@ -31,12 +31,10 @@
                 <td>@r.Medie.Pris</td>
                 <td>@r.Medie.Type</td>
                 <td>@r.Medie.VinylType</td>
-                @if (r.Medie.Reserveret)
-                {
-                    <td>Reserveret</td>
-                }
                 <td>@r.KundeNavn</td>
                 <td>@r.KundeTelefon</td>
+                <td><a asp-page="AdminXXXXXX" asp-route-id="@r.Id">Sælg</a></td>
+                <td><a asp-page="AdminFjernReservation" asp-route-id="@r.Id">Fjern reservation</a></td>
 
             </tr>
         }

@@ -5,22 +5,22 @@ using ProtoVinylEksamenGruppe6.Services;
 
 namespace ProtoVinylEksamenGruppe6.Pages.Admin
 {
-    public class AdminDeleteModel : PageModel
+    public class AdminFjernReservationModel : PageModel
     {
-        private readonly IMedieRepoDB _repo;
+        private readonly IReservationRepoDB _repo;
 
-        public AdminDeleteModel(IMedieRepoDB repo)
+        public AdminFjernReservationModel(IReservationRepoDB repo)
         {
             _repo = repo;
         }
 
 
-        public Medie DeleteMedie { get; set; }
+        public Reservation DeleteReservation { get; set; }
 
 
         public IActionResult OnGet(int Id)
         {
-            DeleteMedie = _repo.GetById(Id);
+            DeleteReservation = _repo.GetById(Id);
 
             return Page();
         }
@@ -28,7 +28,7 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
         public IActionResult OnPost(int Id)
         {
             _repo.DeleteById(Id);
-            return RedirectToPage("Adminlager");
+            return RedirectToPage("AdminStart");
         }
     }
 }

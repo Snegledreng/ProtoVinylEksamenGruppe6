@@ -22,20 +22,35 @@ namespace ProtoVinylEksamenGruppe6.Services
                 command2.Parameters.AddWithValue("@medieid", reservation.Medie.Id);
                 command2.ExecuteNonQuery();
             }
-
-
             conn.Close();
 
 
+        }
+        public Reservation GetById(int id)
+        {
+            Reservation reservation = null;
+            SqlConnection conn = new SqlConnection(Secret.ConnectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand("Select * from Vinyl_Reservation INNER JOIN Vinyl_Medie ON Vinyl_Reservation.medie = Vinyl_Medie.medie_ID INNER JOIN  Vinyl_Genre ON Vinyl_Medie.genre = Vinyl_Genre.Id INNER JOIN Vinyl_Stand ON Vinyl_Medie.stand = Vinyl_Stand.Id WHERE reservation_ID=@res_id", conn);
+            command.Parameters.AddWithValue("@res_id", id);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                reservation = ReadReservation(reader);
+            }
+            conn.Close();
+            return reservation;
         }
 
         public Reservation ReadReservation(SqlDataReader reader)
         {
             {
                 Reservation reservation = new Reservation();
+                reservation.Id = reader.GetInt32(0);
                 reservation.KundeNavn = reader.GetString(2);
                 reservation.KundeTelefon = reader.GetString(3);
                 Medie medie = new Medie();
+                medie.Id = reader.GetInt32(4);
                 medie.Titel = reader.GetString(5);
                 medie.Kunstner = reader.GetString(6);
                 medie.År = reader.GetInt32(7);
@@ -53,12 +68,12 @@ namespace ProtoVinylEksamenGruppe6.Services
             }
         }
 
-        public List<Reservation> GetAll(string typestring)
+        public List<Reservation> GetAll()
         {
             List<Reservation> reservationer = new List<Reservation>();
             SqlConnection conn = new SqlConnection(Secret.ConnectionString);
             conn.Open();
-            SqlCommand command = new SqlCommand(typestring, conn);
+            SqlCommand command = new SqlCommand("Select * from Vinyl_Reservation INNER JOIN Vinyl_Medie ON Vinyl_Reservation.medie = Vinyl_Medie.medie_ID INNER JOIN  Vinyl_Genre ON Vinyl_Medie.genre = Vinyl_Genre.Id INNER JOIN Vinyl_Stand ON Vinyl_Medie.stand = Vinyl_Stand.Id;", conn);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -67,6 +82,22 @@ namespace ProtoVinylEksamenGruppe6.Services
             }
             conn.Close();
             return reservationer;
+        }
+
+        public Reservation DeleteById(int id)
+        {
+            Reservation sletReservation = GetById(id);
+            SqlConnection conn = new SqlConnection(Secret.ConnectionString);
+            conn.Open();
+            SqlCommand command2 = new SqlCommand("UPDATE Vinyl_Medie SET Reserveret = 0 WHERE Medie_ID=@medieid", conn);
+            command2.Parameters.AddWithValue("@medieid", sletReservation.Medie.Id);
+            command2.ExecuteNonQuery();
+            SqlCommand command = new SqlCommand("DELETE FROM Vinyl_Reservation WHERE reservation_ID = @id", conn);
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+
+            conn.Close();
+            return null;
         }
     }
 }

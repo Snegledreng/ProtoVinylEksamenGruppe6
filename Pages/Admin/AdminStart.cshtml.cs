@@ -18,7 +18,7 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
 
         public void OnGet()
         {
-            Reservationer = _repo.GetAll("Select * from Vinyl_Reservation INNER JOIN Vinyl_Medie ON Vinyl_Reservation.medie = Vinyl_Medie.medie_ID INNER JOIN  Vinyl_Genre ON Vinyl_Medie.genre = Vinyl_Genre.Id INNER JOIN Vinyl_Stand ON Vinyl_Medie.stand = Vinyl_Stand.Id;");
+            Reservationer = _repo.GetAll();
         }
 
 
