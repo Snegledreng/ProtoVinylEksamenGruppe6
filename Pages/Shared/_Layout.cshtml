@@ -8,37 +8,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProtoVinylEksamenGruppe6.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    @* Dette gør at navbar er fixed, og at dropdown menuen er sort med hvid tekst. *@
-    <style>
-        body {
-            padding-top: 70px; /* Adjust based on the height of your navbar */
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .dropdown-menu {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .dropdown-item, .nav-link {
-            color: black !important;
-        }
-
-        .dropdown-menu .dropdown-item {
-            color: white !important; /* Set text color to white */
-        }
-
-        .nav-link {
-            color: black !important; /* Set text color for nav links */
-        }
-    </style>
-
 </head>
 <body>
     <header>
@@ -52,7 +21,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Index">Vinyl</a>
                         </li>
