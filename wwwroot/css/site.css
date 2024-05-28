@@ -32,7 +32,7 @@ body {
     background-color: #B0C5A4 !important; /* Sæt navbarens baggrundsfarve */
 }
 
-/*Dette meter Læg i kurv*/
+/*Vores standard knap på siden*/
 .button1 {
     background-color: #B0C5A4;
     border: 2px solid #240A34;
@@ -52,30 +52,12 @@ body {
     height: 80px;
 }
 
-.navbar-brand {
-    padding-left: 0; /* Fjern standardpolstring */
-    margin-left: -135px; /* Flyt mærket/logoet længere til venstre */
-}
-
 .navbar-nav .nav-item {
-    margin-right: 40px; /* Juster margen for at øge eller mindske afstanden */
+    margin-right: auto; /* Juster margen for at øge eller mindske afstanden */
+    margin-left: 20px;
 }
 
-.nav-item {
-    margin-left: 50px; /* Standard margen for alle nav-punkter */
-}
 
-.nav-item-vinyl {
-    margin-left: 10px; /* Juster denne værdi for at kontrollere afstanden mellem logoet og Vinyl-linket */
-}
-
-.nav-item-cd {
-    margin-left: 10px; /* Juster denne værdi for at kontrollere afstanden mellem Vinyl og CD-linket */
-}
-
-.nav-item-kassette {
-    margin-left: 10px; /* Juster denne værdi for at kontrollere afstanden mellem CD og Kassettebånd-linket */
-}
 
 .dropdown-menu {
     background-color: #6DC5D1; /* Baggrundsfarve for dropdown-menu */
