@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProtoVinylEksamenGruppe6</title>
+    <title>@ViewData[""] VINYL CLICK N' COLLECT'</title>
+    <link rel="icon" type="image/x-icon" href="/billeder/ikoner/smeltet lp.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProtoVinylEksamenGruppe6.styles.css" asp-append-version="true" />
@@ -14,8 +15,14 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">
-                    <img src="\Billeder\LP_Vinyl_Symbol_Icon.png" alt="Logo" width="30" height="30" class="d-inline-block align-top">
-                </a>
+
+    @* Billede (logo) og tekst i navbaren. *@
+    <div style="display: flex; align-items: center;">
+        <img src="/billeder/ikoner/smeltet lp.png" alt="Logo" width="120" height="120" class="d-inline-block align-top">
+                        <span style="margin-left: 10px;">VINYL CLICK N' COLLECT</span>
+    </div>
+</a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,29 +30,31 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Vinyl</a>
+                            <a class="nav-link" asp-area="" asp-page="/Index"><img src="/billeder/ikoner/lp 1.ico" width="30" height="30" /> Vinyl</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/CD">CD</a>
+                            <a class="nav-link" asp-area="" asp-page="/CD"><img src="/billeder/Ikoner/CD 1.png" width="30" height="30" /> CD</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Kassette">Kassettebånd</a>
+                            <a class="nav-link" asp-area="" asp-page="/Kassette"><img src="/billeder/ikoner/cassette 1.png" width="30" height="30" /> Kassettebånd</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Kurv" title="Kurv"><i class="fas fa-shopping-cart"></i> Kurv</a>
+                            <a class="nav-link" asp-area="" asp-page="/Kurv" title="Kurv"><img src="/billeder/ikoner/kurv.png" width="30" height="30" /> Kurv</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
+                                <img src="/billeder/ikoner/Admin 2.png" width="30" height="30" /> Admin
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="adminDropdown">
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/AdminStart">AdminStart</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/AdminStart">Admin Start</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/AdminLager">AdminLager</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/AdminLager">Admin Lager</a>
                                 </li>
                             </ul>
                         </li>

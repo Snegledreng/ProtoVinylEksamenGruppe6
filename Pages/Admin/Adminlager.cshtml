@@ -3,6 +3,9 @@
 @{
 }
 
+<h1>Produktlager</h1>
+<br />
+
 <form class="d-flex" role="search" method="post" asp-page-handler="Search" style="margin-left: auto; width: fit-content;">
     <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg" name="query" style="width: 300px;">
     <button class="btn btn-outline-success" type="submit">Søg</button>
@@ -11,6 +14,15 @@
 <a href="/Admin/AdminOpret" class="btn btn-success">Opret</a>
 <table class="table table-hover">
     <thead>
+
+        @* Styling *@
+        <style>
+            body {
+                background-color: #AD8E70;
+        </style>
+
+        
+
         <tr>
             <th class="nav-item dropdown">
 
@@ -77,8 +89,6 @@
                 <td>@(m.Reserveret ? "Reserveret" : " ")</td>
                 <td><a asp-page="AdminUpdate" asp-route-id="@m.Id">Opdater</a></td>
                 <td><a asp-page="AdminDelete" asp-route-id="@m.Id">Slet</a></td>
-
-
             </tr>
         }
 

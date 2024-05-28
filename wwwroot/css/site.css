@@ -1,49 +1,123 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 80px;
+    padding-top: 140px; /* Juster denne værdi baseret på din navbar højde */
+    color: white;
 }
 
-body {
-    padding-top: 70px; /* Adjust based on the height of your navbar */
-}
-
+/* Sørg for, at navbaren er fastgjort og korrekt stylet */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
+    background-color: #58D68D !important; /* Sæt navbarens baggrundsfarve */
+}
+
+.navbar-brand img {
+    width: 80px; /* Juster størrelsen efter behov */
+    height: 80px;
+}
+
+.navbar-brand {
+    padding-left: 0; /* Fjern standardpolstring */
+    margin-left: -135px; /* Flyt mærket/logoet længere til venstre */
+}
+
+.navbar-nav .nav-item {
+    margin-right: 40px; /* Juster margen for at øge eller mindske afstanden */
+}
+
+.nav-item {
+    margin-left: 50px; /* Standard margen for alle nav-punkter */
+}
+
+.nav-item-vinyl {
+    margin-left: 10px; /* Juster denne værdi for at kontrollere afstanden mellem logoet og Vinyl-linket */
+}
+
+.nav-item-cd {
+    margin-left: 10px; /* Juster denne værdi for at kontrollere afstanden mellem Vinyl og CD-linket */
+}
+
+.nav-item-kassette {
+    margin-left: 10px; /* Juster denne værdi for at kontrollere afstanden mellem CD og Kassettebånd-linket */
 }
 
 .dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #6DC5D1; /* Baggrundsfarve for dropdown-menu */
+    color: white; /* Sæt tekstfarven til hvid */
 }
 
 .dropdown-item, .nav-link {
-    color: black !important;
+    color: black !important; /* Sæt tekstfarve for nav-links */
 }
 
 .dropdown-menu .dropdown-item {
-    color: white !important; /* Set text color to white */
+    color: white !important; /* Sæt tekstfarven for dropdown-elementer */
 }
 
+.dropdown-menu a:hover {
+    background-color: #444; /* Mørkere baggrund ved hover */
+}
+
+.table th,
+.table td,
+.navbar-brand,
+.navbar-brand span,
 .nav-link {
-    color: black !important; /* Set text color for nav links */
+    color: white !important; /* Tving tekstfarven til hvid */
+}
+
+.btn {
+    color: white !important; /* Tving tekstfarven på knapper til hvid */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Eksempel på baggrundsfarve for knapper */
+    border-color: #007bff;
+}
+
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #333; /* Ændrer baggrundsfarven ved hover */
+}
+
+
+/*Dette meter Læg i kurv*/
+.button1 {
+    background-color: #4CAF50;
+    border: 2px solid #240A34;
+    border-radius: 10px;
+    color: white;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+h1 {
+    text-align: center;
 }

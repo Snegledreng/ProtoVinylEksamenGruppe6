@@ -8,8 +8,24 @@
     <button class="btn btn-outline-success" type="submit">Søg</button>
 </form>
 <header>
-    Produkter i kurven: @Model.KurvTæller
+    
+
+    @* Her er det styling til kun denne side (vinyl siden) *@
+    <style>
+        body {
+            background-image: url('/billeder/baggrund/kassettebånd 1.jpg'); /* Replace '/path/to/your/background/image.jpg' with the path to your image */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+    </style>
+
 </header>
+
+<h1>Kassettebånd</h1>
+<br />
+<p>Produkter i kurven: @Model.KurvTæller</p>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -21,12 +37,12 @@
                 <ul class="dropdown-menu" aria-labelledby="Kunstner">
                     <li>
                         <form method="post" asp-page-handler="SorterKunstner">
-                            <button type="submit" class="btn btn-primary">Sorter stigende</button>
+                            <button type="submit" class="dropdown-item">Sorter stigende</button>
                         </form>
                     </li>
                     <li>
                         <form method="post" asp-page-handler="SorterKunstnerDESC">
-                            <button type="submit" class="btn btn-primary">Sorter faldende</button>
+                            <button type="submit" class="dropdown-item">Sorter faldende</button>
                         </form>
                     </li>
                 </ul>
@@ -40,12 +56,12 @@
                 <ul class="dropdown-menu" aria-labelledby="Titel">
                     <li>
                         <form method="post" asp-page-handler="SorterTitel">
-                            <button type="submit" class="btn btn-primary">Sorter stigende</button>
+                            <button type="submit" class="dropdown-item">Sorter stigende</button>
                         </form>
                     </li>
                     <li>
                         <form method="post" asp-page-handler="SorterTitelDESC">
-                            <button type="submit" class="btn btn-primary">Sorter faldende</button>
+                            <button type="submit" class="dropdown-item">Sorter faldende</button>
                         </form>
                     </li>
                 </ul>
@@ -73,7 +89,7 @@
                     <td>@m.Type</td>
                     <td>
                         <form method="post" asp-page-handler="TilføjTilKurv" asp-route-id="@m.Id">
-                            <button type="submit" class="btn btn-primary">Læg i Kurv</button>
+                            <button type="submit" class="button1">Læg i kurv</button>
                         </form>
                     </td>
                 </tr>
