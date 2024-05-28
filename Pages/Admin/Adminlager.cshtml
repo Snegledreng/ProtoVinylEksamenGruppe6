@@ -28,7 +28,7 @@
         <style>
             body {
                 background-color: #243763;
-
+            }
         </style>
 
 
@@ -42,12 +42,12 @@
                 <ul class="dropdown-menu" aria-labelledby="Kunstner">
                     <li>
                         <form method="post" asp-page-handler="SorterKunstner">
-                            <button type="submit" class="btn btn-primary">Sorter stigende</button>
+                            <button type="submit" class="dropdown-item">Sorter stigende</button>
                         </form>
                     </li>
                     <li>
                         <form method="post" asp-page-handler="SorterKunstnerDESC">
-                            <button type="submit" class="btn btn-primary">Sorter faldende</button>
+                            <button type="submit" class="dropdown-item">Sorter faldende</button>
                         </form>
                     </li>
                 </ul>
@@ -61,12 +61,12 @@
                 <ul class="dropdown-menu" aria-labelledby="Titel">
                     <li>
                         <form method="post" asp-page-handler="SorterTitel">
-                            <button type="submit" class="btn btn-primary">Sorter stigende</button>
+                            <button type="submit" class="dropdown-item">Sorter stigende</button>
                         </form>
                     </li>
                     <li>
                         <form method="post" asp-page-handler="SorterTitelDESC">
-                            <button type="submit" class="btn btn-primary">Sorter faldende</button>
+                            <button type="submit" class="dropdown-item">Sorter faldende</button>
                         </form>
                     </li>
                 </ul>
