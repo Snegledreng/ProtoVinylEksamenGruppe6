@@ -6,12 +6,16 @@
 @* Styling *@
 <style>
     body {
-        background-color: #AD8E70;
+        background-color: #243763;
+
 </style>
 
 
 <h1>Ændring af medie:</h1>
 
+<div class="row">
+<div class="col-3"> </div>
+<div class="col-6">
 <form method="post">
     <div class="form-group">
         <label>Kunstner</label><br />
@@ -63,10 +67,19 @@
         <input class="form-control" asp-for="@Model.NyPris" /><br />
 
         <label>Type</label><br />
-        <input class="form-control" asp-for="@Model.NyType" /><br />
+        <select class="form-control" asp-for="@Model.NyType">
+            <option value="Vinyl">Vinyl</option>
+            <option value="CD">CD</option>
+            <option value="Kassettebånd">Kassettebånd</option>
+        </select><br />
 
-        <label>Vinyltype</label><br />
-        <input class="form-control" asp-for="@Model.NyVinylType" /><br />
+        <label>VinylType</label><br />
+        <select class="form-control" asp-for="@Model.NyVinylType">
+            <option value="">Vælg vinyltype</option>
+            <option value="LP">LP</option>
+            <option value="EP">EP</option>
+            <option value="Single">Single</option>
+        </select><br />
 
 
 
@@ -78,3 +91,5 @@
         <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
     </div>
 </form>
+    </div>
+</div>

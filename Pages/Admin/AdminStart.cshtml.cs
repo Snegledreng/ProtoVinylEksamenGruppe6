@@ -21,6 +21,10 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
             Reservationer = _repo.GetAll();
         }
 
+        public IActionResult OnPostFjernReservation(int id)
+        {
+            return RedirectToPage("AdminFjernReservation", new { id = id });
+        }
 
     }
 }

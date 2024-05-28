@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<h1>Vinyl</h1>
 
 <form class="d-flex" role="search" method="post" asp-page-handler="Search" style="margin-left: auto; width: fit-content;">
     <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg" name="query" style="width: 300px;">
-    <button class="btn btn-outline-success" type="submit">Søg</button>
+    <button class="button1" type="submit">Søg</button>
 </form>
 <header>
     
@@ -14,17 +15,12 @@
     @* Her er det styling til kun denne side (vinyl siden) *@
     <style>
         body {
-            background-image: url("/billeder/baggrund/lp 1.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: 100% 100%;
+            background-color: #75A47F;
         }
-
     </style>
 
 </header>
 
-<h1>Vinyler</h1>
 <br />
 <p>Produkter i kurven: @Model.KurvTæller</p>
 

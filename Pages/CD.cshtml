@@ -2,22 +2,23 @@
 @model ProtoVinylEksamenGruppe6.Pages.CDModel
 @{
 }
+<h1>CD</h1>
 
 <form class="d-flex" role="search" method="post" asp-page-handler="Search" style="margin-left: auto; width: fit-content;">
     <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg" name="query" style="width: 300px;">
-    <button class="btn btn-outline-success" type="submit">Søg</button>
+    <button class="button1" type="submit">Søg</button>
 </form>
 <header>
 
     @* Styling *@
     <style>
         body {
-            background-color: #5DADE2;
+            background-color: #75A47F;
+        }
     </style>
 
 </header>
 
-<h1>CD'er</h1>
 <br />
 <p>Produkter i kurven: @Model.KurvTæller</p>
 

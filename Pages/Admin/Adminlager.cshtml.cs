@@ -49,5 +49,18 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
             Medier = _repo.Search(query);
             return Page();
         }
+        public IActionResult OnPostUpdate(int id)
+        {
+            return RedirectToPage("AdminUpdate", new { id = id });
+        }
+        public IActionResult OnPostDelete(int id)
+        {
+            return RedirectToPage("AdminDelete", new { id = id });
+        }
+
+        public IActionResult OnPostOpret()
+        {
+            return RedirectToPage("AdminOpret");
+        }
     }
 }

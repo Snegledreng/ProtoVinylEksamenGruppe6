@@ -8,7 +8,8 @@
         @* Styling *@
         <style>
             body {
-                background-color: #AD8E70;
+                background-color: #243763;
+
         </style>
 
         <h1>Reservationer</h1>
@@ -43,9 +44,11 @@
                 <td>@r.Medie.VinylType</td>
                 <td>@r.KundeNavn</td>
                 <td>@r.KundeTelefon</td>
-                <td><a asp-page="AdminXXXXXX" asp-route-id="@r.Id">Sælg</a></td>
-                <td><a asp-page="AdminFjernReservation" asp-route-id="@r.Id">Fjern reservation</a></td>
-
+                <td></td>
+                <td>
+                    <form method="post" asp-page-handler="FjernReservation" asp-route-id="@r.Id">
+                        <button type="submit" class="button1">Fjern reservation</button>
+                </form></td>
             </tr>
         }
 

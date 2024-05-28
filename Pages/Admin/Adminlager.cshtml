@@ -5,23 +5,33 @@
 
 <h1>Produktlager</h1>
 <br />
+<div class="row">
+    <div class="col">
+        <form method="post" asp-page-handler="Opret">
+            <button type="submit" class="button1">Opret</button>
+        </form>
+    </div>
+    <div class="col">
 
-<form class="d-flex" role="search" method="post" asp-page-handler="Search" style="margin-left: auto; width: fit-content;">
-    <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg" name="query" style="width: 300px;">
-    <button class="btn btn-outline-success" type="submit">Søg</button>
-</form>
-
-<a href="/Admin/AdminOpret" class="btn btn-success">Opret</a>
+        <form class="d-flex" role="search" method="post" asp-page-handler="Search" style="margin-left: auto; width: fit-content;">
+            <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg" name="query" style="width: 300px;">
+            <button class="button1" type="submit">Søg</button>
+        </form>
+    </div>
+</div>
+<br />
+<br />
 <table class="table table-hover">
     <thead>
 
         @* Styling *@
         <style>
             body {
-                background-color: #AD8E70;
+                background-color: #243763;
+
         </style>
 
-        
+
 
         <tr>
             <th class="nav-item dropdown">
@@ -87,8 +97,16 @@
                 <td>@m.Type</td>
                 <td>@m.VinylType</td>
                 <td>@(m.Reserveret ? "Reserveret" : " ")</td>
-                <td><a asp-page="AdminUpdate" asp-route-id="@m.Id">Opdater</a></td>
-                <td><a asp-page="AdminDelete" asp-route-id="@m.Id">Slet</a></td>
+                <td>
+                    <form method="post" asp-page-handler="Update" asp-route-id="@m.Id">
+                        <button type="submit" class="button1">Opdater</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@m.Id">
+                        <button type="submit" class="button1">Slet</button>
+                    </form>
+                </td>
             </tr>
         }
 

@@ -11,7 +11,7 @@
                     @* Styling *@
                     <style>
                         body {
-                            background-color: #FEB941;
+                            background-color: #75A47F;
                     </style>
 
                     <h1>Kurv</h1>
@@ -55,15 +55,17 @@
         </div>
         <div class="col-lg-4 col-sm-12">
             <br />
-            <h1>Opret Reservation Her:</h1>
+            <h1>Opret reservation:</h1>
             <br />
             <form method="post" asp-page-handler="OpretReservation">
-                <label>Indtast navn:</label><br />
+                <label><strong>Fulde navn:</strong></label><br />
                 <input class="form-control" asp-for="@Model.KundeNavn" /><br />
-                <label>Indtast telefonnummer:</label><br />
+                <label><strong>Telefonnummer:</strong></label><br />
                 <input class="form-control" asp-for="@Model.KundeTelefon" /><br />
                 <br />
+                <strong>
                 Samlet pris: @Model.TotalPris&nbsp;kr <br />
+                </strong>
                 <br />
                 <button type="submit" class="btn btn-success">Reserver</button>
 

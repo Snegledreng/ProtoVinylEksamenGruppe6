@@ -29,7 +29,22 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background-color: #58D68D !important; /* Sæt navbarens baggrundsfarve */
+    background-color: #B0C5A4 !important; /* Sæt navbarens baggrundsfarve */
+}
+
+/*Dette meter Læg i kurv*/
+.button1 {
+    background-color: #B0C5A4;
+    border: 2px solid #240A34;
+    border-radius: 10px;
+    color: black;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
 .navbar-brand img {
@@ -79,6 +94,10 @@ body {
     background-color: #444; /* Mørkere baggrund ved hover */
 }
 
+.table {
+    background-color: rgba( 115, 115, 115, 0.6)
+}
+
 .table th,
 .table td,
 .navbar-brand,
@@ -102,20 +121,7 @@ body {
 }
 
 
-/*Dette meter Læg i kurv*/
-.button1 {
-    background-color: #4CAF50;
-    border: 2px solid #240A34;
-    border-radius: 10px;
-    color: white;
-    padding: 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+
 
 
 h1 {
