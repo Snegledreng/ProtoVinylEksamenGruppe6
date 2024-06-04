@@ -60,14 +60,23 @@
             <form method="post" asp-page-handler="OpretReservation">
                 <label><strong>Fulde navn:</strong></label><br />
                 <input class="form-control" asp-for="@Model.KundeNavn" /><br />
+                <span asp-validation-for="KundeNavn" class="text-danger"></span><br />
                 <label><strong>Telefonnummer:</strong></label><br />
                 <input class="form-control" asp-for="@Model.KundeTelefon" /><br />
+                <span asp-validation-for="KundeTelefon" class="text-danger"></span><br />
                 <br />
                 <strong>
                 Samlet pris: @Model.TotalPris&nbsp;kr <br />
                 </strong>
                 <br />
-                <button type="submit" class="btn btn-success">Reserver</button>
+                @if (Model.Medier.Count() > 0)
+                {
+                    <button type="submit" class="btn btn-success">Reserver</button>
+                }
+                else
+                {
+                    <div>Kurven er tom. Læg en vare i kurven for at reservere.</div>
+                }
 
             </form>
         </div>
