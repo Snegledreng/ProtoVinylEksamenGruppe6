@@ -2,6 +2,12 @@
 @model ProtoVinylEksamenGruppe6.Pages.Admin.AdminlagerModel
 @{
 }
+@* Styling *@
+<style>
+    body {
+        background-color: #243763;
+    }
+</style>
 @if (!Model.adminBruger.IsLoggedIn)
 {
     <div class="row">
@@ -18,113 +24,103 @@
 
 @if (Model.adminBruger.IsLoggedIn)
 {
-<h1>Produktlager</h1>
-<br />
-<div class="row">
-    <div class="col">
-        <form method="post" asp-page-handler="Opret">
-            <button type="submit" class="button1">Opret</button>
-        </form>
-    </div>
-    <div class="col">
+    <h1>Produktlager</h1>
+    <br />
+    <div class="row">
+        <div class="col">
+            <form method="post" asp-page-handler="Opret">
+                <button type="submit" class="button1">Opret</button>
+            </form>
+        </div>
+        <div class="col">
 
-        <form class="d-flex" role="search" method="post" asp-page-handler="Search" style="margin-left: auto; width: fit-content;">
-            <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg" name="query" style="width: 300px;">
-            <button class="button1" type="submit">Søg</button>
-        </form>
+            <form class="d-flex" role="search" method="post" asp-page-handler="Search" style="margin-left: auto; width: fit-content;">
+                <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg" name="query" style="width: 300px;">
+                <button class="button1" type="submit">Søg</button>
+            </form>
+        </div>
     </div>
-</div>
-<br />
-<br />
-<table class="table table-hover">
-    <thead>
+    <br />
+    <br />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="nav-item dropdown">
 
-    @* Styling *@
-    <style>
-            body {
-                background-color: #243763;
+                    <a class="nav-link dropdown-toggle text-dark" href="#" id="Kunstner" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Kunstner
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="Kunstner">
+                        <li>
+                            <form method="post" asp-page-handler="SorterKunstner">
+                                <button type="submit" class="dropdown-item">Sorter stigende</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form method="post" asp-page-handler="SorterKunstnerDESC">
+                                <button type="submit" class="dropdown-item">Sorter faldende</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                </th>
+                <th class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle text-dark" href="#" id="Titel" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Titel
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="Titel">
+                        <li>
+                            <form method="post" asp-page-handler="SorterTitel">
+                                <button type="submit" class="dropdown-item">Sorter stigende</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form method="post" asp-page-handler="SorterTitelDESC">
+                                <button type="submit" class="dropdown-item">Sorter faldende</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                </th>
+                <th>År</th>
+                <th>Genre</th>
+                <th>Stand</th>
+                <th>Pris</th>
+                <th>Type</th>
+                <th>Vinyltype</th>
+                <th>Reservationsstatus</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Medier)
+            {
+                <tr>
+
+                    <td>@m.Kunstner</td>
+                    <td>@m.Titel</td>
+                    <td>@m.År</td>
+                    <td>@m.Genre</td>
+                    <td>@m.Stand</td>
+                    <td>@m.Pris</td>
+                    <td>@m.Type</td>
+                    <td>@m.VinylType</td>
+                    <td>@(m.Reserveret ? "Reserveret" : " ")</td>
+                    <td>
+                        <form method="post" asp-page-handler="Update" asp-route-id="@m.Id">
+                            <button type="submit" class="button1">Opdater</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@m.Id">
+                            <button type="submit" class="button1">Slet</button>
+                        </form>
+                    </td>
+                </tr>
             }
-        </style>
 
-
-
-    <tr>
-        <th class="nav-item dropdown">
-
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="Kunstner" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Kunstner
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="Kunstner">
-                <li>
-                    <form method="post" asp-page-handler="SorterKunstner">
-                        <button type="submit" class="dropdown-item">Sorter stigende</button>
-                    </form>
-                </li>
-                <li>
-                    <form method="post" asp-page-handler="SorterKunstnerDESC">
-                        <button type="submit" class="dropdown-item">Sorter faldende</button>
-                    </form>
-                </li>
-            </ul>
-
-        </th>
-        <th class="nav-item dropdown">
-
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="Titel" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Titel
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="Titel">
-                <li>
-                    <form method="post" asp-page-handler="SorterTitel">
-                        <button type="submit" class="dropdown-item">Sorter stigende</button>
-                    </form>
-                </li>
-                <li>
-                    <form method="post" asp-page-handler="SorterTitelDESC">
-                        <button type="submit" class="dropdown-item">Sorter faldende</button>
-                    </form>
-                </li>
-            </ul>
-
-        </th>
-        <th>År</th>
-        <th>Genre</th>
-        <th>Stand</th>
-        <th>Pris</th>
-        <th>Type</th>
-        <th>Vinyltype</th>
-        <th>Reservationsstatus</th>
-        <th> </th>
-        <th> </th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var m in Model.Medier)
-    {
-        <tr>
-
-            <td>@m.Kunstner</td>
-            <td>@m.Titel</td>
-            <td>@m.År</td>
-            <td>@m.Genre</td>
-            <td>@m.Stand</td>
-            <td>@m.Pris</td>
-            <td>@m.Type</td>
-            <td>@m.VinylType</td>
-            <td>@(m.Reserveret ? "Reserveret" : " ")</td>
-            <td>
-                <form method="post" asp-page-handler="Update" asp-route-id="@m.Id">
-                    <button type="submit" class="button1">Opdater</button>
-                </form>
-            </td>
-            <td>
-                <form method="post" asp-page-handler="Delete" asp-route-id="@m.Id">
-                    <button type="submit" class="button1">Slet</button>
-                </form>
-            </td>
-        </tr>
-    }
-
-    </tbody>
-</table>
+        </tbody>
+    </table>
 }
