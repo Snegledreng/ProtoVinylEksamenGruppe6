@@ -29,8 +29,7 @@ namespace ProtoVinylEksamenGruppe6.Services
         /// Sletter et medie fra databasen ved hjælp af mediets ID.
         /// </summary>
         /// <param name="id">ID'et på det medie som skal slettes.</param>
-        /// <returns>Returnerer intet. Metoden sletter mediet fra databasen uden at returnerer nogen data.</returns>
-        Medie DeleteById(int id);
+        void DeleteById(int id);
 
 
         /// <summary>
