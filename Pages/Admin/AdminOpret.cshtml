@@ -10,7 +10,22 @@
 
 </style>
 
+@if (!Model.adminBruger.IsLoggedIn)
+{
+    <div class="row">
+        <div class="col-4"> </div>
+        <div class="col-4">
+            Du er ikke logget ind.
+            <a href="/Admin/Login" class="button1">Gå til login</a>
+            <a href="/Index" class="button1">Gå til Vinyler</a>
+            <div class="col-4">
+            </div>
+        </div>
+    </div>
+}
 
+@if (Model.adminBruger.IsLoggedIn)
+{
 <h1>Opret en ny vare</h1>
 
 <div class="row">
@@ -87,3 +102,4 @@
             </div>
         </div>
     </div>
+    }

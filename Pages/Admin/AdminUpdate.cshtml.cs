@@ -27,8 +27,19 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
         public string Genre { get; set; }
         public string Stand { get; set; }
 
+        public AdminBruger adminBruger { get; set; } = new AdminBruger();
+
         public IActionResult OnGet(int Id)
         {
+            try
+            {
+                adminBruger = SessionHelper.Get<AdminBruger>(HttpContext);
+            }
+            catch
+            {
+                // ignored
+            }
+
             OldMedie = _repo.GetById(Id);
             NyKunstner = OldMedie.Kunstner;
             NyTitel = OldMedie.Titel;

@@ -16,8 +16,19 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
 
         public List<Reservation> Reservationer { get; set; }
 
+        public AdminBruger adminBruger { get; set; } = new AdminBruger();
+
         public void OnGet()
         {
+            try
+            {
+                adminBruger = SessionHelper.Get<AdminBruger>(HttpContext);
+            }
+            catch
+            {
+                // ignored
+            }
+
             Reservationer = _repo.GetAll();
         }
 

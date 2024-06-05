@@ -9,36 +9,52 @@
         background-color: #243763;
 </style>
 
-
-<form method="post">
+@if (!Model.adminBruger.IsLoggedIn)
+{
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <h1>Vil du slette dette medie?</h1>
-            <strong>
-                <label>Kunstner: @Model.DeleteMedie.Kunstner</label><br />
-
-                <label>Titel: @Model.DeleteMedie.Titel</label><br />
-
-                <label>Stand:@Model.DeleteMedie.Stand</label><br />
-
-                <label>Pris: @Model.DeleteMedie.Pris</label><br />
-
-                <label>Reserveret: @(Model.DeleteMedie.Reserveret ? "Reserveret" : "Ikke reserveret")</label><br />
-            </strong>
+        <div class="col-4"> </div>
+        <div class="col-4">
+            Du er ikke logget ind.
+            <a href="/Admin/Login" class="button1">Gå til login</a>
+            <a href="/Index" class="button1">Gå til Vinyler</a>
+            <div class="col-4">
+            </div>
         </div>
-        <div class="col-3"></div>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
+    </div>
+}
+
+@if (Model.adminBruger.IsLoggedIn)
+{
+    <form method="post">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-            <input type="hidden" name="Id" value="@Model.DeleteMedie.Id" />
-            <input type="submit" value="Slet" class="btn btn-success" />&nbsp;&nbsp;&nbsp;
+                <h1>Vil du slette dette medie?</h1>
+                <strong>
+                    <label>Kunstner: @Model.DeleteMedie.Kunstner</label><br/>
 
-            <a href="/Admin/Adminlager" class="btn btn-danger">Fortryd</a>
+                    <label>Titel: @Model.DeleteMedie.Titel</label><br/>
+
+                    <label>Stand:@Model.DeleteMedie.Stand</label><br/>
+
+                    <label>Pris: @Model.DeleteMedie.Pris</label><br/>
+
+                    <label>Reserveret: @(Model.DeleteMedie.Reserveret ? "Reserveret" : "Ikke reserveret")</label><br/>
+                </strong>
             </div>
             <div class="col-3"></div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <input type="hidden" name="Id" value="@Model.DeleteMedie.Id"/>
+                    <input type="submit" value="Slet" class="btn btn-success"/>&nbsp;&nbsp;&nbsp;
+
+                    <a href="/Admin/Adminlager" class="btn btn-danger">Fortryd</a>
+                </div>
+                <div class="col-3"></div>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+}

@@ -32,114 +32,56 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
         [BindProperty] public string VinylType { get; set; }
 
 
+        public AdminBruger adminBruger { get; set; } = new AdminBruger();
 
-        public void OnGet() {}
+        public void OnGet()
+        {
+            try
+            {
+                adminBruger = SessionHelper.Get<AdminBruger>(HttpContext);
+            }
+            catch
+            {
+                // ignored
+            }
+        }
 
         public IActionResult OnPost()
         {
-            if (NyGenre == "Pop")
+            Genre = NyGenre switch
             {
-                Genre = "1";
-            }
-            else if(NyGenre == "Hiphop")
-            {
-                Genre = "2";
-            }
-            else if(NyGenre == "Rock")
-            {
-                Genre = "3";
-            }
-            else if (NyGenre == "RnB")
-            {
-                Genre = "4";
-            }
-            else if (NyGenre == "Soul")
-            {
-                Genre = "5";
-            }
-            else if (NyGenre == "Reggae")
-            {
-                Genre = "6";
-            }
-            else if (NyGenre == "Country")
-            {
-                Genre = "7";
-            }
-            else if (NyGenre == "Funk")
-            {
-                Genre = "8";
-            }
-            else if (NyGenre == "Folk")
-            {
-                Genre = "9";
-            }
-            else if (NyGenre == "Jazz")
-            {
-                Genre = "10";
-            }
-            else if (NyGenre == "Disco")
-            {
-                Genre = "11";
-            }
-            else if (NyGenre == "Klassisk")
-            {
-                Genre = "12";
-            }
-            else if (NyGenre == "Elektronisk")
-            {
-                Genre = "13";
-            }
-            else if (NyGenre == "Blues")
-            {
-                Genre = "14";
-            }
-            else if (NyGenre == "Børnemusik")
-            {
-                Genre = "15";
-            }
-            else if (NyGenre == "New-age")
-            {
-                Genre = "16";
-            }
-            else if (NyGenre == "Ska")
-            {
-                Genre = "17";
-            }
-            else if (NyGenre == "Traditionelt")
-            {
-                Genre = "18";
-            }
-            else if (NyGenre == "Indie")
-            {
-                Genre = "19";
-            }
+                "Pop" => "1",
+                "Hiphop" => "2",
+                "Rock" => "3",
+                "RnB" => "4",
+                "Soul" => "5",
+                "Reggae" => "6",
+                "Country" => "7",
+                "Funk" => "8",
+                "Folk" => "9",
+                "Jazz" => "10",
+                "Disco" => "11",
+                "Klassisk" => "12",
+                "Elektronisk" => "13",
+                "Blues" => "14",
+                "Børnemusik" => "15",
+                "New-age" => "16",
+                "Ska" => "17",
+                "Traditionelt" => "18",
+                "Indie" => "19",
+                _ => Genre
+            };
 
-            if (NyStand == "Mint")
+            Stand = NyStand switch
             {
-                Stand = "1";
-            }
-            if (NyStand == "NM")
-            {
-                Stand = "2";
-            }
-            if (NyStand == "VG+")
-            {
-                Stand = "3";
-            }
-            if (NyStand == "VG")
-            {
-                Stand = "4";
-            }
-            if (NyStand == "Bad")
-            {
-                Stand = "5";
-            }
-            if (NyStand == "Ny")
-            {
-                Stand = "10";
-            }
-
-
+                "Mint" => "1",
+                "NM" => "2",
+                "VG+" => "3",
+                "VG" => "4",
+                "Bad" => "5",
+                "Ny" => "10",
+                _ => Stand
+            };
 
             Medie nyMedie = new Medie();
             nyMedie.Titel = Titel;

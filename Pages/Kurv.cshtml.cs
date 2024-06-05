@@ -19,11 +19,12 @@ namespace ProtoVinylEksamenGruppe6.Pages
         public int TotalPris {  get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Du skal indtaste et navn.")]
         [StringLength(1000, MinimumLength = 2, ErrorMessage = "Navnet skal være mindst 2 tegn")]
         public string KundeNavn { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "Du skal indtaste et telefonnummer")]
+        [Required(ErrorMessage = "Du skal indtaste et telefonnummer.")]
         [StringLength(12, MinimumLength = 8, ErrorMessage = "Telefonnummer skal være mellem 8-12 tegn")]
         public string KundeTelefon { get; set; }
 

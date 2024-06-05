@@ -2,55 +2,73 @@
 @model AdminStartModel
 @{
 }
-<table class="table table-hover">
-    <thead>
+<style>
+    body {
+        background-color: #243763;
 
-        @* Styling *@
-        <style>
-            body {
-                background-color: #243763;
+</style>
 
-        </style>
+@if (!Model.adminBruger.IsLoggedIn)
+{
+    <div class="row">
+        <div class="col-4"> </div>
+        <div class="col-4">
+            Du er ikke logget ind.
+            <a href="/Admin/Login" class="button1">Gå til login</a>
+            <a href="/Index" class="button1">Gå til Vinyler</a>
+            <div class="col-4">
+            </div>
+        </div>
+    </div>
+}
 
-        <h1>Reservationer</h1>
-        <br />
+@if (Model.adminBruger.IsLoggedIn)
+{
+    <table class="table table-hover">
+        <thead>
 
-        <tr>
-            <th>Kunstner</th>
-            <th>Titel</th>
-            <th>År</th>
-            <th>Genre</th>
-            <th>Stand</th>
-            <th>Pris</th>
-            <th>Type</th>
-            <th>Vinyltype</th>
-            <th>Kundenavn</th>
-            <th>Kundetelefon</th>
-            <th>Gennemfør salg</th>
-            <th>Send tilbage til lager</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var r in Model.Reservationer)
-        {
+
+            <h1>Reservationer</h1>
+            <br />
+
             <tr>
-                <td>@r.Medie.Kunstner</td>
-                <td>@r.Medie.Titel</td>
-                <td>@r.Medie.År</td>
-                <td>@r.Medie.Genre</td>
-                <td>@r.Medie.Stand</td>
-                <td>@r.Medie.Pris</td>
-                <td>@r.Medie.Type</td>
-                <td>@r.Medie.VinylType</td>
-                <td>@r.KundeNavn</td>
-                <td>@r.KundeTelefon</td>
-                <td></td>
-                <td>
-                    <form method="post" asp-page-handler="FjernReservation" asp-route-id="@r.Id">
-                        <button type="submit" class="button1">Fjern reservation</button>
-                </form></td>
+                <th>Kunstner</th>
+                <th>Titel</th>
+                <th>År</th>
+                <th>Genre</th>
+                <th>Stand</th>
+                <th>Pris</th>
+                <th>Type</th>
+                <th>Vinyltype</th>
+                <th>Kundenavn</th>
+                <th>Kundetelefon</th>
+                <th>Gennemfør salg</th>
+                <th>Send tilbage til lager</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var r in Model.Reservationer)
+            {
+                <tr>
+                    <td>@r.Medie.Kunstner</td>
+                    <td>@r.Medie.Titel</td>
+                    <td>@r.Medie.År</td>
+                    <td>@r.Medie.Genre</td>
+                    <td>@r.Medie.Stand</td>
+                    <td>@r.Medie.Pris</td>
+                    <td>@r.Medie.Type</td>
+                    <td>@r.Medie.VinylType</td>
+                    <td>@r.KundeNavn</td>
+                    <td>@r.KundeTelefon</td>
+                    <td></td>
+                    <td>
+                        <form method="post" asp-page-handler="FjernReservation" asp-route-id="@r.Id">
+                            <button type="submit" class="button1">Fjern reservation</button>
+                        </form>
+                    </td>
+                </tr>
+            }
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+}

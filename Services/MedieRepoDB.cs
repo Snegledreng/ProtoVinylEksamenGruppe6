@@ -35,7 +35,7 @@ namespace ProtoVinylEksamenGruppe6.Services
             conn.Close();
             return newMedie;
         }
-
+        
         public Medie Update(Medie opdateretMedie)
         {
             SqlConnection connection = new SqlConnection(Secret.ConnectionString);
@@ -76,17 +76,14 @@ namespace ProtoVinylEksamenGruppe6.Services
             return opdateretMedie;
         }
 
-        public Medie DeleteById(int id)
+        public void DeleteById(int id)
         {
             SqlConnection conn = new SqlConnection(Secret.ConnectionString);
             conn.Open();
             SqlCommand command = new SqlCommand("DELETE FROM Vinyl_Medie WHERE medie_ID = @id", conn);
             command.Parameters.AddWithValue("@id", id);
-
             command.ExecuteNonQuery();
-
             conn.Close();
-            return null;
         }
 
         public Medie ReadMedie(SqlDataReader reader)
@@ -125,8 +122,6 @@ namespace ProtoVinylEksamenGruppe6.Services
             conn.Close();
             return medie;
         }
-
-        //Get By Name
 
         public List<Medie> GetAll()
         {

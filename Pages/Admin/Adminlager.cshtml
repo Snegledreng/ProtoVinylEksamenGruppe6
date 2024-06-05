@@ -2,7 +2,22 @@
 @model ProtoVinylEksamenGruppe6.Pages.Admin.AdminlagerModel
 @{
 }
+@if (!Model.adminBruger.IsLoggedIn)
+{
+    <div class="row">
+        <div class="col-4"> </div>
+        <div class="col-4">
+            Du er ikke logget ind.
+            <a href="/Admin/Login" class="button1">Gå til login</a>
+            <a href="/Index" class="button1">Gå til Vinyler</a>
+            <div class="col-4">
+            </div>
+        </div>
+    </div>
+}
 
+@if (Model.adminBruger.IsLoggedIn)
+{
 <h1>Produktlager</h1>
 <br />
 <div class="row">
@@ -24,8 +39,8 @@
 <table class="table table-hover">
     <thead>
 
-        @* Styling *@
-        <style>
+    @* Styling *@
+    <style>
             body {
                 background-color: #243763;
             }
@@ -33,82 +48,83 @@
 
 
 
-        <tr>
-            <th class="nav-item dropdown">
+    <tr>
+        <th class="nav-item dropdown">
 
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="Kunstner" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Kunstner
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="Kunstner">
-                    <li>
-                        <form method="post" asp-page-handler="SorterKunstner">
-                            <button type="submit" class="dropdown-item">Sorter stigende</button>
-                        </form>
-                    </li>
-                    <li>
-                        <form method="post" asp-page-handler="SorterKunstnerDESC">
-                            <button type="submit" class="dropdown-item">Sorter faldende</button>
-                        </form>
-                    </li>
-                </ul>
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="Kunstner" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Kunstner
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="Kunstner">
+                <li>
+                    <form method="post" asp-page-handler="SorterKunstner">
+                        <button type="submit" class="dropdown-item">Sorter stigende</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="SorterKunstnerDESC">
+                        <button type="submit" class="dropdown-item">Sorter faldende</button>
+                    </form>
+                </li>
+            </ul>
 
-            </th>
-            <th class="nav-item dropdown">
+        </th>
+        <th class="nav-item dropdown">
 
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="Titel" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Titel
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="Titel">
-                    <li>
-                        <form method="post" asp-page-handler="SorterTitel">
-                            <button type="submit" class="dropdown-item">Sorter stigende</button>
-                        </form>
-                    </li>
-                    <li>
-                        <form method="post" asp-page-handler="SorterTitelDESC">
-                            <button type="submit" class="dropdown-item">Sorter faldende</button>
-                        </form>
-                    </li>
-                </ul>
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="Titel" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Titel
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="Titel">
+                <li>
+                    <form method="post" asp-page-handler="SorterTitel">
+                        <button type="submit" class="dropdown-item">Sorter stigende</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="SorterTitelDESC">
+                        <button type="submit" class="dropdown-item">Sorter faldende</button>
+                    </form>
+                </li>
+            </ul>
 
-            </th>
-            <th>År</th>
-            <th>Genre</th>
-            <th>Stand</th>
-            <th>Pris</th>
-            <th>Type</th>
-            <th>Vinyltype</th>
-            <th>Reservationsstatus</th>
-            <th> </th>
-            <th> </th>
-        </tr>
+        </th>
+        <th>År</th>
+        <th>Genre</th>
+        <th>Stand</th>
+        <th>Pris</th>
+        <th>Type</th>
+        <th>Vinyltype</th>
+        <th>Reservationsstatus</th>
+        <th> </th>
+        <th> </th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var m in Model.Medier)
-        {
-            <tr>
+    @foreach (var m in Model.Medier)
+    {
+        <tr>
 
-                <td>@m.Kunstner</td>
-                <td>@m.Titel</td>
-                <td>@m.År</td>
-                <td>@m.Genre</td>
-                <td>@m.Stand</td>
-                <td>@m.Pris</td>
-                <td>@m.Type</td>
-                <td>@m.VinylType</td>
-                <td>@(m.Reserveret ? "Reserveret" : " ")</td>
-                <td>
-                    <form method="post" asp-page-handler="Update" asp-route-id="@m.Id">
-                        <button type="submit" class="button1">Opdater</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@m.Id">
-                        <button type="submit" class="button1">Slet</button>
-                    </form>
-                </td>
-            </tr>
-        }
+            <td>@m.Kunstner</td>
+            <td>@m.Titel</td>
+            <td>@m.År</td>
+            <td>@m.Genre</td>
+            <td>@m.Stand</td>
+            <td>@m.Pris</td>
+            <td>@m.Type</td>
+            <td>@m.VinylType</td>
+            <td>@(m.Reserveret ? "Reserveret" : " ")</td>
+            <td>
+                <form method="post" asp-page-handler="Update" asp-route-id="@m.Id">
+                    <button type="submit" class="button1">Opdater</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" asp-page-handler="Delete" asp-route-id="@m.Id">
+                    <button type="submit" class="button1">Slet</button>
+                </form>
+            </td>
+        </tr>
+    }
 
     </tbody>
 </table>
+}

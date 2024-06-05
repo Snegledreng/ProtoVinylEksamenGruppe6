@@ -17,9 +17,20 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
 
         public Reservation DeleteReservation { get; set; }
 
+        public AdminBruger adminBruger { get; set; } = new AdminBruger();
+
+
 
         public IActionResult OnGet(int Id)
         {
+            try
+            {
+                adminBruger = SessionHelper.Get<AdminBruger>(HttpContext);
+            }
+            catch
+            {
+                // ignored
+            }
             DeleteReservation = _repo.GetById(Id);
 
             return Page();

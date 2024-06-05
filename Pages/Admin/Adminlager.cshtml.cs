@@ -16,8 +16,18 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
 
         public List<Medie> Medier { get; set; }
 
+        public AdminBruger adminBruger { get; set; } = new AdminBruger();
+
         public void OnGet()
         {
+            try
+            {
+                adminBruger = SessionHelper.Get<AdminBruger>(HttpContext);
+            }
+            catch
+            {
+                // ignored
+            }
             Medier = _repo.GetAll();
         }
         public IActionResult OnPostSorterTitel()

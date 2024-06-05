@@ -1,0 +1,30 @@
+﻿@page
+@model ProtoVinylEksamenGruppe6.Pages.Admin.LoginModel
+@{
+}
+<style>
+    body {
+        background-color: #243763;
+
+</style>
+<h1>Admin Login</h1>
+<div class="row">
+    <div class="col-4"> </div>
+    <div class="col-4">
+        <form method="post">
+            <div class="form-group>">
+                <label>Username</label><br />
+                <input class="form-control" asp-for="@Model.Username" /><br />
+                <span asp-validation-for="Username" class="text-danger"></span><br />
+
+                <label>Password</label><br />
+                <input class="form-control" asp-for="@Model.Password" /><br />
+                <span asp-validation-for="Password" class="text-danger"></span><br />
+
+                <input type="submit" value="Log ind" class="button1" />
+            </div>
+        </form>
+        <div class="col-4">
+        </div>
+    </div>
+</div>

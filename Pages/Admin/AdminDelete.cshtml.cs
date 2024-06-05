@@ -16,10 +16,18 @@ namespace ProtoVinylEksamenGruppe6.Pages.Admin
 
 
         public Medie DeleteMedie { get; set; }
-
+        public AdminBruger adminBruger { get; set; } = new AdminBruger();
 
         public IActionResult OnGet(int Id)
         {
+            try
+            {
+                adminBruger = SessionHelper.Get<AdminBruger>(HttpContext);
+            }
+            catch
+            {
+                // ignored
+            }
             DeleteMedie = _repo.GetById(Id);
 
             return Page();
