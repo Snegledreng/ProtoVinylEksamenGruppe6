@@ -76,7 +76,7 @@ namespace ProtoVinylEksamenGruppe6.Services
             return opdateretMedie;
         }
 
-        public void DeleteById(int id)
+        public Medie DeleteById(int id)
         {
             SqlConnection conn = new SqlConnection(Secret.ConnectionString);
             conn.Open();
