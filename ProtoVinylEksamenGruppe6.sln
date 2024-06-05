@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34601.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoVinylEksamenGruppe6", "ProtoVinylEksamenGruppe6.csproj", "{CA1D5D85-7B87-4388-BB2C-76300AE4E95A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoVinylEksamenGruppe6Tests", "..\ProtoVinylEksamenGruppe6Tests\ProtoVinylEksamenGruppe6Tests.csproj", "{97B05548-8DE0-41C1-AD44-479FE2E7EC87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CA1D5D85-7B87-4388-BB2C-76300AE4E95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA1D5D85-7B87-4388-BB2C-76300AE4E95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA1D5D85-7B87-4388-BB2C-76300AE4E95A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97B05548-8DE0-41C1-AD44-479FE2E7EC87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B05548-8DE0-41C1-AD44-479FE2E7EC87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B05548-8DE0-41C1-AD44-479FE2E7EC87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B05548-8DE0-41C1-AD44-479FE2E7EC87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
